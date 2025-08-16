@@ -1,0 +1,99 @@
+.footer {
+  width: 100%;
+  background-color: var(--main-blue);
+  color: white;
+
+  text-align: center;
+  .container {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 3px solid var(--main-white);
+    .media,
+    .submenu {
+      flex: 1;
+      min-width: 0;
+    }
+    .media {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin: 0;
+      padding: 0;
+      img {
+        width: 150px;
+        height: 150px;
+      }
+      .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin: 10px 0px;
+        a {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 10px;
+          border-radius: 50%;
+          background-color: var(--main-white);
+          transition: transform 0.3s;
+          &:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+          }
+          img {
+            width: 25px; // Controla el tamaño
+            height: auto;
+          }
+        }
+      }
+    }
+    .submenu {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      nav {
+        width: 120px;
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        margin-bottom: auto;
+
+        a {
+          text-decoration: none;
+          color: var(--main-white);
+          margin-bottom: 10px;
+        }
+      }
+      .img-footer {
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        img {
+          width: 300px;
+        }
+      }
+    }
+  }
+  .copyright {
+    padding: 10px;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    gap: 1rem;
+
+    .media,
+    .submenu {
+      width: 100%;
+      flex: none;
+    }
+  }
+}

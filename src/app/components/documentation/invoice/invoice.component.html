@@ -1,0 +1,43 @@
+<section class="main docs">
+  <div class="title" (click)="openSection()">
+    <fa-icon [icon]="arrowRight" *ngIf="open == false"></fa-icon>
+    <fa-icon [icon]="arrowDown" *ngIf="open == true"></fa-icon>
+    <p>Factura</p>
+  </div>
+  <div class="content-info" *ngIf="open">
+    <div class="type">
+      <p>POST</p>
+      <span>BaseURL + '/emision'</span>
+    </div>
+    <div class="table-header">
+      <div class="title">
+        <p>Headers</p>
+      </div>
+      <div class="header">
+        <span>Campo</span>
+        <span>Tipo</span>
+        <span>Descripción</span>
+      </div>
+      <div class="fields">
+        <span>Cotent-Type</span>
+        <span>string</span>
+        <span></span>
+
+        <span>token</span>
+        <span>string</span>
+        <span>Token se sesión</span>
+      </div>
+    </div>
+
+    <div class="table-request" *ngFor="let example of jsonExamples">
+      <div class="title">
+        <p>{{ example.title }}</p>
+
+        <button (click)="copyJson(example.jsonData)">Copiar JSON</button>
+      </div>
+      <div class="json">
+        <pre [innerHTML]="example.jsonData | jsonFormat"></pre>
+      </div>
+    </div>
+  </div>
+</section>

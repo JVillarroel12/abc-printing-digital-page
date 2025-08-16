@@ -1,0 +1,26 @@
+<header class="header">
+  <div class="container">
+    <img
+      routerLink="/"
+      src="assets/images/common/logo-blue.svg"
+      alt="Abc Printing Digital"
+      loading="lazy"
+    />
+    <div>
+      <nav>
+        <p routerLink="/">
+          <fa-icon [icon]="homeIcon"></fa-icon>
+          Home
+        </p>
+        <p routerLink="/documentation">
+          <fa-icon [icon]="bookIcon"></fa-icon>
+          Documentación
+        </p>
+        <a href="http://demoportal.abcdigitalprinting.com/">
+          <fa-icon [icon]="printIcon"></fa-icon>
+          Imprenta Digital
+        </a>
+      </nav>
+    </div>
+  </div>
+</header>
