@@ -2,7 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { JsonFormatPipe } from '../../../pipes/json-format.pipe';
-import { faArrowRight, faArrowDown } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCircleArrowRight,
+  faCircleArrowDown,
+} from '@fortawesome/free-solid-svg-icons';
+
 import { ClipboardService } from '../../../services/clipboard.service';
 import { ToastService } from '../../../services/toast.service';
 
@@ -15,8 +19,8 @@ import { ToastService } from '../../../services/toast.service';
 })
 export class CreditNoteComponent {
   open: boolean = false;
-  arrowRight = faArrowRight;
-  arrowDown = faArrowDown;
+  arrowRight = faCircleArrowRight;
+  arrowDown = faCircleArrowDown;
 
   jsonExamples = [
     {

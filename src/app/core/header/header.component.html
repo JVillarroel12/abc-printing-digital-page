@@ -1,26 +1,63 @@
 <header class="header">
   <div class="container">
+    <!-- LOGO: Cierra el menú al hacer clic si está en móvil -->
     <img
       routerLink="/"
+      (click)="closeMenu()"
       src="assets/images/common/logo-blue.svg"
       alt="Abc Printing Digital"
       loading="lazy"
     />
-    <div>
-      <nav>
-        <p routerLink="/">
-          <fa-icon [icon]="homeIcon"></fa-icon>
-          Home
-        </p>
-        <p routerLink="/documentation">
-          <fa-icon [icon]="bookIcon"></fa-icon>
-          Documentación
-        </p>
-        <a href="http://demoportal.abcdigitalprinting.com/">
-          <fa-icon [icon]="printIcon"></fa-icon>
-          Imprenta Digital
-        </a>
-      </nav>
-    </div>
+
+    <!-- NAVEGACIÓN PRINCIPAL: Se oculta en móvil -->
+    <nav class="desktop-nav">
+      <p routerLink="/">
+        <fa-icon [icon]="homeIcon"></fa-icon>
+        Home
+      </p>
+      <p routerLink="/documentation">
+        <fa-icon [icon]="bookIcon"></fa-icon>
+        Documentación
+      </p>
+      <a href="http://demoportal.abcdigitalprinting.com/">
+        <fa-icon [icon]="cartIcon"></fa-icon>
+        ABC POS
+      </a>
+      <a href="http://demoportal.abcdigitalprinting.com/">
+        <fa-icon [icon]="printIcon"></fa-icon>
+        Imprenta Digital
+      </a>
+    </nav>
+
+    <!-- BOTÓN HAMBURGUESA: Solo visible en móvil -->
+    <button
+      class="menu-toggle"
+      (click)="toggleMenu()"
+      [class.is-active]="isMenuOpen"
+      aria-label="Toggle menu"
+    >
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+  </div>
+  <!-- MENÚ DESPLEGABLE MÓVIL: Fuera del flujo principal del header -->
+  <div class="mobile-nav" [class.is-open]="isMenuOpen">
+    <p routerLink="/" (click)="closeMenu()">
+      <fa-icon [icon]="homeIcon"></fa-icon>
+      Home
+    </p>
+    <p routerLink="/documentation" (click)="closeMenu()">
+      <fa-icon [icon]="bookIcon"></fa-icon>
+      Documentación
+    </p>
+    <a href="http://demoabcpos.abcdigitalprinting.com/" (click)="closeMenu()">
+      <fa-icon [icon]="cartIcon"></fa-icon>
+      ABC POS
+    </a>
+    <a href="http://demoportal.abcdigitalprinting.com/" (click)="closeMenu()">
+      <fa-icon [icon]="printIcon"></fa-icon>
+      Imprenta Digital
+    </a>
   </div>
 </header>

@@ -1,100 +1,177 @@
 .header {
   width: 100%;
   height: 80px;
-  color: black;
   background-color: var(--main-white);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12), 0 6px 6px rgba(0, 0, 0, 0.12);
-  padding: 0px 10px;
+  padding: 0 20px;
   position: fixed;
   top: 0;
   z-index: 1000;
+
   .container {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     width: 100%;
-    margin: 0;
+    max-width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+
     img {
       width: 100px;
       height: 80px;
-    }
-    div {
-      width: 100%;
-      display: flex;
-      justify-content: flex-end;
       cursor: pointer;
-      nav {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        text-align: right;
+    }
+  }
+}
 
-        p,
-        a {
-          display: flex;
-          align-items: center;
-          color: var(--main-blue);
-          margin-left: 1rem;
-          text-decoration: none;
-          margin-left: 30px;
-          padding: 0;
-          font-size: 14px;
-          fa-icon {
-            color: var(--main-blue-1);
-            font-size: 20px;
-            margin-right: 5px;
-          }
-          &:hover {
-            font-size: 15px;
-            font-weight: bold;
-            transition: all 0.2s;
-          }
-        }
-        .active-link {
-          font-weight: bold;
-          color: #3f51b5;
-          border-bottom: 2px solid #3f51b5;
-        }
-        a {
-          padding: 3px 10px;
-          border-radius: 5px;
-          background-color: var(--main-blue);
-          color: white;
-          font-weight: 500;
-        }
+.desktop-nav {
+  display: flex;
+  align-items: center;
+
+  p,
+  a {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    border-radius: 8px;
+    color: var(--main-blue);
+    margin-left: 30px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+
+    fa-icon {
+      color: var(--main-blue-1);
+      font-size: 20px;
+      margin-right: 8px;
+      transition: color 0.3s ease;
+    }
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(19, 43, 57, 0.25);
+
+      a {
+        color: var(--main-white);
       }
     }
   }
+
+  .active-link {
+    font-weight: bold;
+    color: #3f51b5;
+  }
+
+  a {
+    padding: 3px 10px;
+    border-radius: 5px;
+    background-color: var(--main-blue);
+    color: white;
+    font-weight: 500;
+  }
 }
+
+.menu-toggle {
+  display: none;
+}
+
+.mobile-nav {
+  display: none;
+}
+
 @media (max-width: 768px) {
-  .header {
-    height: 70px;
-    .container {
-      img {
-        width: 70px;
-        height: 70px;
+  // 1. Ocultar el menú de escritorio en móvil
+  .desktop-nav {
+    display: none;
+  }
+
+  // 2. Mostrar y dar estilo al botón hamburguesa
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 28px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1010; // Debe estar por encima del menú
+
+    .bar {
+      height: 3px;
+      width: 100%;
+      background-color: var(--main-blue);
+      border-radius: 10px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    // Animación del botón a una 'X' cuando está activo
+    &.is-active .bar:nth-child(1) {
+      transform: translateY(8.5px) rotate(45deg);
+    }
+    &.is-active .bar:nth-child(2) {
+      opacity: 0;
+    }
+    &.is-active .bar:nth-child(3) {
+      transform: translateY(-8.5px) rotate(-45deg);
+    }
+  }
+
+  // 3. Dar estilo y posición al menú desplegable
+  .mobile-nav {
+    position: fixed;
+    top: 80px; // Altura del header
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 80px); // Ocupa el resto de la pantalla
+    background-color: var(--main-white);
+    z-index: 999;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2rem;
+
+    // Lógica de visibilidad
+    transform: translateX(100%); // Lo escondemos a la derecha
+    transition: transform 0.3s ease-in-out;
+
+    &.is-open {
+      transform: translateX(0); // Lo traemos a la vista
+    }
+
+    p,
+    a {
+      color: var(--main-blue);
+      font-size: 18px;
+      text-decoration: none;
+      padding: 1rem 0;
+      width: 100%;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      fa-icon {
+        margin-right: 10px;
+        font-size: 22px;
       }
     }
   }
-}
-@media (max-width: 500px) {
+
+  // Ajustes menores al header en móvil
   .header {
-    height: 60px;
-    .container {
-      img {
-        width: 60px;
-        height: 60px;
-      }
-      div {
-        nav {
-          p,
-          a {
-            font-size: 13px;
-            fa-icon {
-              display: none;
-            }
-          }
-        }
-      }
+    height: 80px;
+    .container img {
+      width: 90px;
+      height: 80px;
     }
   }
 }

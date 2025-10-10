@@ -5,7 +5,7 @@ import { CreditNoteComponent } from '../../components/documentation/credit-note/
 import { DebitNoteComponent } from '../../components/documentation/debit-note/debit-note.component';
 import { RetentionComponent } from '../../components/documentation/retention/retention.component';
 import { CancelDocumentComponent } from '../../components/documentation/cancel-document/cancel-document.component';
-import { SeoService } from '../../services/seo.service';
+import { SeoData, SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-docs',
@@ -24,8 +24,15 @@ import { SeoService } from '../../services/seo.service';
 export class DocsComponent {
   constructor(private seoService: SeoService) {}
   ngOnInit() {
-    this.seoService.updateMetaTags(
-      'Encuentra toda la documentación técnica sobre nuestros servicios de facturación digital e integración API en ABC Printing Digital.'
-    );
+    const seoData: SeoData = {
+      title:
+        'ABC Printing Digital | Impresión y Facturación Digital en Venezuela',
+      description:
+        'Soluciones integrales en impresión digital de alta calidad, facturación electrónica y documentos legales para tu negocio en Venezuela. Calidad, rapidez y tecnología.',
+      //image: 'https://www.abcprintingdigital.com/assets/images/social-share.jpg',
+      slug: '',
+    };
+
+    this.seoService.updateSeoData(seoData);
   }
 }

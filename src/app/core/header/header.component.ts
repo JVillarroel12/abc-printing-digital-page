@@ -3,8 +3,13 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {} from '@fortawesome/free-regular-svg-icons';
-import { faHome, faBook, faPrint } from '@fortawesome/free-solid-svg-icons';
-import { Router } from 'express';
+import {
+  faHome,
+  faBook,
+  faPrint,
+  faCartShopping,
+} from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -16,16 +21,17 @@ export class HeaderComponent {
   homeIcon = faHome;
   bookIcon = faBook;
   printIcon = faPrint;
-  nav = [
-    {
-      label: 'Inicio',
-      link: '/',
-    },
-    {
-      label: 'Documentacion',
-      link: '/documentation',
-    },
-  ];
+  cartIcon = faCartShopping;
+
+  isMenuOpen = false;
   constructor() {}
-  goPortal() {}
+  toggleMenu(): void {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  closeMenu(): void {
+    if (this.isMenuOpen) {
+      this.isMenuOpen = false;
+    }
+  }
 }

@@ -81,7 +81,7 @@ input::-webkit-inner-spin-button {
   display: flex;
   gap: 2rem;
   justify-content: space-between;
-  padding: 5rem 0rem;
+  padding: 5rem 10rem;
   .info {
     display: flex;
     flex-direction: column;
@@ -114,9 +114,12 @@ input::-webkit-inner-spin-button {
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12), 0 6px 6px rgba(0, 0, 0, 0.12);
       font-size: 16px;
       padding: 10px;
+      border: none;
       background-color: var(--main-blue);
       color: white;
       cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease,
+        transform 0.3s ease;
       fa-icon {
         font-size: 20px;
         margin-right: 10px;
@@ -127,9 +130,8 @@ input::-webkit-inner-spin-button {
       }
       &:hover {
         background-color: var(--main-success);
-        transition: all 0.1s;
-        border: none;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12), 0 6px 6px rgba(0, 0, 0, 0.12);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(19, 43, 57, 0.25);
       }
     }
   }
@@ -149,7 +151,16 @@ input::-webkit-inner-spin-button {
     }
   }
 }
-
+@media (max-width: 1200px) {
+  .home {
+    padding: 5rem 5rem;
+  }
+}
+@media (max-width: 1024px) {
+  .home {
+    padding: 5rem 2.5rem;
+  }
+}
 @media (max-width: 768px) {
   .main {
     flex-direction: column;

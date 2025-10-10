@@ -15,4 +15,5 @@ export class Art1Component {
   walletIcon = faWallet;
   downloadIcon = faCloudArrowDown;
   sendIcon = faPaperPlane;
+  onSubmit() {}
 }

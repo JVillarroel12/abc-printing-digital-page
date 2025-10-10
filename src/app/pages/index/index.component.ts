@@ -6,7 +6,7 @@ import { Art5Component } from '../../components/home/art-5/art-5.component';
 import { Art4Component } from '../../components/home/art-4/art-4.component';
 import { CommonModule } from '@angular/common';
 import { CardsComponent } from '../../components/home/cards/cards.component';
-import { SeoService } from '../../services/seo.service';
+import { SeoData, SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-index',
@@ -29,8 +29,15 @@ export class IndexComponent {
   ngOnInit() {
     // El título ya lo puso el router.
     // Nosotros nos encargamos de la descripción.
-    this.seoService.updateMetaTags(
-      'ABC Printing Digital: Soluciones integrales en impresión digital de alta calidad, facturación digital y documentos legales para tu negocio en Venezuela. Calidad, rapidez y tecnología para modernizar tu empresa.'
-    );
+    const seoData: SeoData = {
+      title:
+        'ABC Printing Digital | Impresión y Facturación Digital en Venezuela',
+      description:
+        'Soluciones integrales en impresión digital de alta calidad, facturación electrónica y documentos legales para tu negocio en Venezuela. Calidad, rapidez y tecnología.',
+      //image: 'https://www.abcprintingdigital.com/assets/images/social-share.jpg',
+      slug: '',
+    };
+
+    this.seoService.updateSeoData(seoData);
   }
 }

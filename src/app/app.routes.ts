@@ -14,5 +14,5 @@ export const routes: Routes = [
     component: DocsComponent,
     title: 'ABC Printing Digital | Documentación',
   },
-  { path: '**', redirectTo: '' }, // Ruta comodín (404)
+  { path: '**', redirectTo: '' },
 ];
