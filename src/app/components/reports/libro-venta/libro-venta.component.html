@@ -1,0 +1,29 @@
+<main>
+  <section class="header">
+    <div class="card-header">
+      <span>GENERAR LIBRO DE VENTA</span>
+    </div>
+  </section>
+  <section class="section-form">
+    <div class="form">
+      <div class="card selector">
+        <label>Seleccionar Mes:</label>
+        <input
+          type="month"
+          [(ngModel)]="form.mesSeleccionado"
+          (change)="onMonthChange($event)"
+        />
+      </div>
+    </div>
+  </section>
+  <section class="section-footer">
+    <button class="view" (click)="getAllDocument('pdf')">
+      <ion-icon name="eye"></ion-icon>
+      <span>PDF</span>
+    </button>
+    <button class="download" (click)="getAllDocument('excel')">
+      <ion-icon name="arrow-down-circle"></ion-icon>
+      <span>Excel</span>
+    </button>
+  </section>
+</main>

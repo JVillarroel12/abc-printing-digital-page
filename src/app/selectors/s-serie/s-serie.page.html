@@ -1,0 +1,35 @@
+<main>
+  <section class="search">
+    <div class="card">
+      <label for="">Buscar serie</label>
+      <input placeholder="Buscar " [(ngModel)]="form.name" #serie>
+    </div>
+  </section>
+  <section class="list" id="containerLines">
+    <div class="grid columns-head">
+      <span class="grid__name">
+        <ion-label>Organización</ion-label>
+      </span>
+      <span class="grid__rif">
+        <ion-label>RIF</ion-label>
+      </span>
+      <span class="grid__serie">
+        <ion-label>Serie</ion-label>
+      </span>
+    </div>
+    <span class="grid items" *ngFor="let serie of filteredSeries | dynamicFilter: form.name" 
+      (dblclick)="selectedSerie(serie)"
+      [ngClass]="{'serieSelected': serie.serie_id == lineSerieSelected.serie_id}"
+      
+      >
+      <span class="grid__name">
+        {{serie.org_id_src.name}}
+      </span>
+      <span class="grid__rif">
+        {{serie.org_id_src.value}}
+      </span>
+      <span class="grid__serie">{{serie.serie_id_src.numero}}</span>
+
+    </span>
+  </section>
+</main>

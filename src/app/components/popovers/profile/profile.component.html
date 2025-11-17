@@ -1,0 +1,25 @@
+<ion-content class="view-content-profile fm">
+  <ion-header class="header">
+    <div class="content">
+      <p class="contentIcon">
+        <ion-icon name="person"></ion-icon>
+      </p>
+      <span class="perfil">{{ authService.user.user.desc_catalogo }}</span>
+      <p class="user">
+        {{ authService.user.user.usuario }}
+      </p>
+    </div>
+  </ion-header>
+
+  <main class="main">
+    <!-- <ion-label class="main__option" (click)="settings()"
+      >Configuraciones
+      <ion-icon name="settings"></ion-icon>
+    </ion-label> -->
+
+    <ion-label class="main__option" (click)="logout()">
+      Cerrar sesion
+      <ion-icon name="exit"></ion-icon>
+    </ion-label>
+  </main>
+</ion-content>

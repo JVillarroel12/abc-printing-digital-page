@@ -1,0 +1,303 @@
+main {
+  width: 100%;
+  height: 100%;
+  background-color: var(--main-light-4);
+  border-radius: 10px;
+
+  .section-filter {
+    width: 100%;
+    height: calc(100%);
+    position: relative;
+
+    .section-list {
+      width: 100%;
+      height: calc(100% - 240px);
+      margin-top: 10px;
+      background-color: var(--main-white);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1),
+        /* Sombra suave inferior */ 0 4px 8px rgba(0, 0, 0, 0.1),
+        /* Sombra media */ 0 8px 16px rgba(0, 0, 0, 0.1); /* Sombra más externa */
+      transition: all 0.3s ease; /* Transición suave */
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 5px;
+      .list {
+        width: 98%;
+        height: 99%;
+        display: grid;
+        overflow: scroll;
+        border-radius: 5px;
+        align-content: flex-start;
+      }
+      .grid {
+        width: 100%;
+        height: 100%;
+        grid-template-rows: auto;
+        display: grid;
+        grid-template-columns:
+          50px 60px 60px 40px 160px 250px 100px minmax(300px, 1fr)
+          150px 150px 200px 150px 150px 150px;
+        grid-template-areas: "arrow estado email print tipoDocumento acquirer rif bpartner serie nmrDocument nmrDocumentDig nmrControl fEmission fEmissionDig";
+        &__arrow,
+        &__estado,
+        &__email,
+        &__print,
+        &__tipoDocumento,
+        &__acquirer,
+        &__rif,
+        &__bpartner,
+        &__serie,
+        &__nmrDocument,
+        &__nmrDocumentDig,
+        &__nmrControl,
+        &__fEmission,
+        &__fEmissionDig {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        &__arrow {
+          grid-area: arrow;
+        }
+        &__estado {
+          grid-area: estado;
+        }
+        &__email {
+          grid-area: email;
+        }
+        &__print {
+          grid-area: print;
+        }
+        &__tipoDocumento {
+          grid-area: tipoDocumento;
+        }
+
+        &__acquirer {
+          grid-area: acquirer;
+        }
+        &__rif {
+          grid-area: rif;
+        }
+        &__bpartner {
+          grid-area: bpartner;
+        }
+        &__serie {
+          grid-area: serie;
+        }
+        &__nmrDocument {
+          grid-area: nmrDocument;
+        }
+        &__nmrDocumentDig {
+          grid-area: nmrDocumentDig;
+        }
+        &__nmrControl {
+          grid-area: nmrControl;
+        }
+        &__fEmission {
+          grid-area: fEmission;
+        }
+        &__fEmissionDig {
+          grid-area: fEmissionDig;
+        }
+
+        &__tipoDocumento {
+          grid-area: tipoDocumento;
+        }
+
+        &:nth-child(odd) {
+          width: 100%;
+          //background-color: var(--main-2) !important;
+        }
+
+        &:nth-child(even) {
+          width: 100%;
+          //background-color: var(--main-1) !important;
+        }
+        &.columns-head {
+          height: 40px !important;
+          font-size: 13px;
+          padding: 7px;
+          span {
+            color: var(--main-blue);
+            font-weight: bold;
+          }
+        }
+        &.items {
+          margin: 0;
+          padding: 7px;
+          font-size: 11px;
+          height: auto;
+          border-bottom: 1px solid var(--main-light-3);
+          span {
+            color: var(--main-blue) !important;
+          }
+        }
+        span {
+          text-align: center;
+          width: auto;
+          select {
+            border: none;
+            background-color: transparent;
+            color: var(--main-blue);
+            padding: 5px 10px;
+          }
+          ion-icon {
+            font-size: 17px;
+          }
+          div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 !important;
+            width: auto;
+            height: 20px !important;
+            border-radius: 5px;
+            font-size: 11px;
+            // box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+            //   0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+            p {
+              margin: 0;
+              padding: 5px;
+              border-radius: 10px;
+            }
+          }
+          button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+              0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+            border-radius: 10px;
+            padding: 5px;
+            &.email {
+              background-color: var(--success-main);
+            }
+            &.print {
+              background-color: var(--primary);
+            }
+          }
+        }
+        .anulado {
+          background: var(--success-main);
+        }
+        .noAnulado {
+          background: var(--danger);
+        }
+        .factura {
+          background-color: forestgreen;
+          color: whitesmoke;
+        }
+        .credito {
+          background-color: yellow;
+          color: black;
+        }
+        .debito {
+          background-color: dodgerblue;
+          color: whitesmoke;
+        }
+        .despacho {
+          background-color: chocolate;
+          color: whitesmoke;
+        }
+        .entrega {
+          background-color: orange;
+          color: black;
+        }
+        .retencion {
+          background-color: purple;
+          color: whitesmoke;
+        }
+        .childs {
+          padding: 5px;
+          margin-left: 50px;
+          // position: static;
+          // display: block;
+          width: 100%;
+          .gridd {
+            width: 100%;
+            display: grid;
+            grid-template-rows: auto;
+            grid-template-columns: minmax(400px, 1fr) 120px 250px 120px 150px 300px;
+            grid-template-areas: "name cant price porcentIva iva total";
+            border-radius: 5px 5px 0px 0px;
+
+            &__name,
+            &__cant,
+            &__price,
+            &__porcentIva,
+            &__iva,
+            &__total {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+            &__name {
+              grid-area: name;
+            }
+            &__cant {
+              grid-area: cant;
+            }
+            &__price {
+              grid-area: price;
+            }
+            &__porcentIva {
+              grid-area: porcentIva;
+            }
+            &__iva {
+              grid-area: iva;
+            }
+            &__total {
+              grid-area: total;
+            }
+          }
+          .columns-head-sucursal {
+            color: whitesmoke;
+            font-size: 12px !important;
+            .head {
+              color: black !important;
+              height: 30px !important;
+              font-weight: bold;
+              background-color: var(--main-light-4) !important;
+              border-bottom: 1px solid var(--main-light-2);
+            }
+          }
+          .subitem {
+            background-color: var(--main-light-4) !important;
+            border-bottom: 1px solid var(--main-light-2);
+            height: 25px !important;
+            color: black !important;
+            font-size: 11px !important;
+          }
+        }
+      }
+      .columns6 {
+        grid-column: span 6;
+      }
+      .noData {
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        ion-icon {
+          font-size: 35px;
+          color: var(--main-blue);
+        }
+        p {
+          font-size: 30px;
+          color: var(--main-blue);
+        }
+      }
+      .productSelected {
+        background-color: var(--ion-color-warning) !important;
+        span {
+          color: white !important;
+        }
+      }
+    }
+  }
+}

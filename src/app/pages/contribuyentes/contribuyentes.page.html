@@ -1,0 +1,114 @@
+<main>
+  <section class="top-menu">
+    <div class="title">
+      <img src="assets/img/logo2.png" class="round-image" />
+    </div>
+
+    <div class="user">
+      <button class="call" (click)="openModalContact()">
+        <ion-icon name="call"></ion-icon>
+      </button>
+      <div (click)="showProfile($event)">
+        <ion-icon name="person"></ion-icon>
+        <p>{{ authService.user.user.usuario }}</p>
+      </div>
+    </div>
+  </section>
+  <section class="content-main">
+    <div class="content-filter">
+      <div class="card groupItems">
+        <label>Tipo RIF</label>
+        <select
+          [(ngModel)]="filter.columns.tipo_identificacion"
+          (change)="applyFilter()"
+        >
+          <option value="" selected>Todos</option>
+          <option value="V" selected>Persona Natural</option>
+          <option value="J">Persona Jurídica</option>
+          <option value="E">Extranjero</option>
+          <option value="P">Pasaporte</option>
+          <option value="G">Gubernamental</option>
+        </select>
+      </div>
+      <div class="card">
+        <label for="">
+          <ion-icon name="search"></ion-icon>
+          RIF
+        </label>
+        <input
+          placeholder="Buscar "
+          [(ngModel)]="filter.columns.value"
+          (keydown.enter)="applyFilter()"
+        />
+      </div>
+      <div class="card">
+        <label for="">
+          <ion-icon name="search"></ion-icon>
+          Razón Social
+        </label>
+        <input
+          placeholder="Buscar "
+          [(ngModel)]="filter.columns.name"
+          (keydown.enter)="applyFilter()"
+        />
+      </div>
+
+      <!-- <div class="card selector">
+        <label>Región</label>
+        <input type="text" readonly />
+        <ion-icon name="search-outline"></ion-icon>
+      </div> -->
+      <div class="card">
+        <label for="">
+          <ion-icon name="search"></ion-icon>
+          Dirección
+        </label>
+        <input placeholder="Buscar " [(ngModel)]="form.direccion" #order />
+      </div>
+      <div class="card selector">
+        <label>Fecha:</label>
+        <input
+          type="datetime-local"
+          placeholder="Fecha de creación"
+          [(ngModel)]="form.fechaInicio"
+          (change)="onInicioDateChange($event)"
+        />
+      </div>
+    </div>
+    <div class="content-contribuyentes">
+      <div class="card-contribuyente abc" (click)="selectImprenta()">
+        <!-- <div class="content-logo">
+          <ion-icon name="person-outline"></ion-icon>
+        </div> -->
+        <p class="name">ABC DIGITAL PRINTING</p>
+        <p class="rif">J-50614016-6</p>
+      </div>
+      <div
+        class="card-contribuyente"
+        *ngFor="let data of allContribuyentes"
+        (click)="selectContribuyente(data)"
+      >
+        <!-- <button
+          class="fiscalizado"
+          title="Fiscalizar contribuyente"
+          (click)="fiscalizar(data)"
+        >
+           <ion-icon name="document-attach-outline"></ion-icon>
+        </button> -->
+        <div class="content-logo">
+          <ion-icon name="person-outline"></ion-icon>
+        </div>
+        <div class="content-info">
+          <p class="name">{{data.name}}</p>
+          <p class="rif">{{data.tipo_identificacion}}-{{data.value}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="content-out">
+      <button (click)="selectMode()">
+        <ion-icon name="arrow-undo-outline"></ion-icon>
+        <p>Regresar</p>
+      </button>
+    </div>
+  </section>
+</main>

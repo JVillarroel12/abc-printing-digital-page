@@ -1,0 +1,27 @@
+<main>
+  <section class="search">
+    <div class="card">
+      <label for="">Buscar tipo</label>
+      <input placeholder="Buscar " [(ngModel)]="form.name" #catalogo />
+    </div>
+  </section>
+  <section class="list" id="containerLines">
+    <div class="grid columns-head">
+      <span class="grid__name">
+        <ion-label>Descripcion</ion-label>
+      </span>
+      <span class="grid__valor">
+        <ion-label>RIF</ion-label>
+      </span>
+    </div>
+    <span
+      class="grid items lineSelected"
+      *ngFor="let catalogo of filteredCatalogo | dynamicFilter: form.name"
+      (dblclick)="selectedCatalogo(catalogo)"
+      [ngClass]="{'catalogoSelected': catalogo.catalogo_id == lineCatalogoSelected.catalogo_id}"
+    >
+      <span class="grid__name"> {{catalogo.descripcion}} </span>
+      <span class="grid__valor"> {{catalogo.valor}} </span>
+    </span>
+  </section>
+</main>

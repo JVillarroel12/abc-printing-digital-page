@@ -1,0 +1,64 @@
+<ion-header [translucent]="true" class="headerModal">
+  <ion-toolbar>
+    <ion-title>{{general.titleButton}} Usuario</ion-title>
+    <ion-icon name="close-outline" slot="end" (click)="closeModal()"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <main class="modal-add">
+    <section>
+      <div class="card selector" [class.invalid]="!valid.isOrgValid">
+        <label>Empresa</label>
+        <input
+          type="text"
+          readonly
+          (keyup.F2)="selectorOrg()"
+          (dblclick)="selectorOrg()"
+          [(ngModel)]="selectors.org.name"
+          (focusout)="validateField('org_id')"
+          #org
+        />
+        <ion-icon name="search-outline"></ion-icon>
+      </div>
+      <div class="card selector" [class.invalid]="!valid.isCatalogoValid">
+        <label>Tipo de usuario</label>
+        <input
+          type="text"
+          readonly
+          (keyup.F2)="selectorCatalogo()"
+          (dblclick)="selectorCatalogo()"
+          [(ngModel)]="selectors.catalogo.descripcion"
+          (focusout)="validateField('catalogo_id')"
+          #org
+        />
+        <ion-icon name="search-outline"></ion-icon>
+      </div>
+      <div class="card check">
+        <p>Portal</p>
+        <ion-checkbox [(ngModel)]="form.isportal" color="success">
+        </ion-checkbox>
+      </div>
+      <div class="card normal columns2" [class.invalid]="!valid.isEmailValid">
+        <label>Correo electrónico</label>
+        <input
+          type="text"
+          [(ngModel)]="form.email"
+          (focusout)="validateField('email')"
+          #name2
+        />
+      </div>
+      <div class="card normal columns2">
+        <label>Correo de recuperación</label>
+        <input type="text" [(ngModel)]="form.email2" #name2 />
+      </div>
+    </section>
+  </main>
+  <section class="bottomModal" (click)="setDataUser()">
+    <button
+      [ngClass]="{'editButton': mode == 'edit', 'createButton': mode == 'create'}"
+    >
+      {{general.titleButton}}
+    </button>
+  </section>
+</ion-content>

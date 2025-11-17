@@ -1,0 +1,731 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/**
+ * Ionic Dark Mode
+ * -----------------------------------------------------
+ * For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
+ */
+
+/* @import "@ionic/angular/css/palettes/dark.always.css"; */
+/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+@import "@ionic/angular/css/palettes/dark.system.css";
+
+@font-face {
+  font-family: "Nunito";
+  src: url("assets/fonts/nunito/Nunito-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+body {
+  font-family: "Nunito", sans-serif;
+  line-height: 1.6;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  width: 5px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(128, 128, 128);
+  width: 6px;
+  border-radius: 10px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.inner-scroll {
+  scrollbar-width: thin;
+  width: 6px;
+}
+.headerModal {
+  ion-toolbar,
+  .header {
+    --background: var(--main-blue);
+    color: white;
+    height: 50px;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    img {
+      width: 40px;
+      height: 40px;
+    }
+    .closeModal {
+      padding: 5px;
+      font-size: 40px;
+    }
+    ion-icon {
+      font-size: 20px;
+      padding: 3px;
+      border-radius: 50%;
+      background-color: rgb(160, 160, 160);
+      cursor: pointer;
+    }
+  }
+}
+.content-modal {
+  width: 100%;
+  height: calc(100% - 50px) !important;
+  padding: 10px;
+  background: var(--main-light-3);
+  overflow-x: scroll;
+}
+.card {
+  width: 96%;
+  height: 40px;
+  padding: 5px;
+  background-color: transparent;
+  border: 2px solid var(--main-light-3);
+  position: relative;
+  border-radius: 5px;
+  margin: 5px;
+  label {
+    background-color: var(--c-principal-othe);
+    font-size: 14px;
+    color: white;
+    padding: 2px;
+    position: absolute;
+    top: -11px;
+    display: flex;
+    align-items: center;
+    ion-icon {
+      font-size: 17px;
+      margin-right: 3px;
+    }
+  }
+  input {
+    width: 100%;
+    height: 100%;
+    color: white;
+    border: none;
+    background-color: var(--c-principal-othe);
+    font-size: 14px;
+    &:focus {
+      outline: none;
+    }
+  }
+  &.selector {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    label {
+      position: absolute;
+      top: -9px;
+    }
+    ion-icon {
+      color: white;
+      font-size: 20px;
+    }
+    input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+      filter: brightness(1); /* Convierte el icono a negro puro */
+    }
+  }
+  &.normal {
+    label {
+      position: absolute;
+      top: -9px;
+    }
+  }
+  &.check {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    ion-checkbox {
+      --background: transparent;
+      --background-checked: transparent;
+      --border-color: transparent;
+      --border-color-checked: transparent;
+      --checkmark-color: white;
+    }
+  }
+  &.groupItems {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    label {
+      position: absolute;
+      top: -9px;
+    }
+    select {
+      border: none;
+      background-color: transparent;
+      color: white;
+      padding: 5px 10px;
+      width: 100%;
+      margin-top: 4px;
+      font-size: 11px;
+    }
+    select option {
+      background-color: #333;
+      color: white;
+      font-size: 11px;
+    }
+  }
+}
+.modal {
+  --border-radius: 10px;
+  &.contact {
+    --width: 70%;
+    --height: 80%;
+  }
+  &.alerts {
+    --width: 420px;
+    --height: 300px;
+    --border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.23) !important;
+  }
+  &.createOrg {
+    --width: 80%;
+    --height: 85%;
+  }
+  &.createUser {
+    --width: 80%;
+    --height: 85%;
+  }
+  &.createSequence {
+    --width: 80%;
+    --height: 85%;
+  }
+  &.selector {
+    --border-radius: 0px !important;
+    --width: 70%;
+    --height: 300px;
+    background-color: rgba(0, 0, 0, 0.23) !important;
+  }
+  &.startAssignment {
+    --width: 85%;
+    --height: 80%;
+  }
+}
+ion-content {
+  .modal-add {
+    width: 100%;
+    height: calc(100% - 50px) !important;
+    padding: 10px;
+    background: var(--main-white);
+    overflow-x: scroll;
+    section {
+      width: 100%;
+      height: auto;
+      background-color: var(--main-2);
+      padding: 5px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      border-radius: 5px;
+      position: relative;
+      justify-items: center;
+      margin-top: 10px;
+      &:first-child {
+        margin-top: 0px !important;
+      }
+      .card {
+        width: 99%;
+        height: 40px;
+        padding: 5px;
+        background-color: transparent;
+        border: 2px solid var(--main-white);
+        position: relative;
+        border-radius: 5px;
+        margin: 5px;
+        label {
+          background-color: var(--main-2);
+          font-size: 14px;
+          color: var(--main-white);
+          padding: 2px;
+        }
+        input {
+          width: 100%;
+          height: 100%;
+          color: var(--main-white);
+          border: none;
+          background-color: var(--main-2);
+          font-size: 12px;
+          &:focus {
+            outline: none;
+            //background-color: rgb(56, 56, 56);
+          }
+        }
+        &.selector {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          label {
+            position: absolute;
+            top: -9px;
+          }
+          ion-icon {
+            color: white;
+            font-size: 20px;
+          }
+        }
+        &.normal {
+          label {
+            position: absolute;
+            top: -9px;
+          }
+        }
+        &.check {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          p {
+            font-size: 14px;
+          }
+          ion-checkbox {
+            --background: white;
+            --background-checked: transparent;
+            --border-color: white;
+            --border-color-checked: white;
+            --checkmark-color: white;
+          }
+        }
+        &.groupItems {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          label {
+            position: absolute;
+            top: -9px;
+          }
+          select {
+            border: none;
+            background-color: transparent;
+            color: white;
+            padding: 5px 10px;
+          }
+          select option {
+            background-color: #333;
+            color: white;
+          }
+        }
+        &:focus-within {
+          //background-color: rgb(56, 56, 56);
+        }
+      }
+      .iconDivider {
+        position: absolute;
+        top: -25px;
+        left: calc(50% - 20px);
+
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 99;
+        span {
+          width: 25px;
+          height: 25px;
+          border-radius: 50%;
+
+          background-color: var(--main-light-3);
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          ion-icon {
+            font-size: 1rem;
+            color: white;
+          }
+        }
+      }
+      aside {
+        width: 100%;
+        height: auto;
+        background-color: var(--main-2);
+        padding: 5px;
+        margin-top: 10px;
+        border-radius: 5px;
+        &:first-child {
+          margin-top: 0 !important;
+        }
+        .title {
+          width: 100%;
+          height: 20px;
+          position: relative;
+          span {
+            display: flex;
+            ion-icon {
+              font-size: 20px;
+              color: white;
+            }
+            h4 {
+              font-size: 16px;
+              color: white;
+              margin: 0px 0px 0px 5px;
+            }
+          }
+        }
+        .content-form {
+          width: 100%;
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr 1fr;
+          margin-top: 10px;
+          .card {
+            height: 40px;
+            padding: 5px;
+            background-color: transparent;
+            border: 2px solid var(--main-light-3);
+            position: relative;
+            border-radius: 5px;
+            margin: 5px;
+            label {
+              background-color: var(--main-2);
+              font-size: 14px;
+              color: white;
+            }
+            input {
+              width: 100%;
+              height: 100%;
+              color: white;
+              border: none;
+              background-color: var(--main-2);
+              &:focus {
+                outline: none;
+                background-color: var(--main-1);
+              }
+            }
+
+            &.selector {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              label {
+                position: absolute;
+                top: -8px;
+              }
+              ion-icon {
+                color: white;
+                font-size: 20px;
+              }
+            }
+            &.normal {
+              label {
+                position: absolute;
+                top: -8px;
+              }
+            }
+            &.check {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              label {
+              }
+              ion-checkbox {
+                --background: transparent;
+                --background-checked: transparent;
+                --border-color: transparent;
+                --border-color-checked: transparent;
+                --checkmark-color: white;
+              }
+            }
+            &.groupItems {
+              display: flex;
+              align-items: center;
+              justify-content: right;
+              label {
+                position: absolute;
+                top: -8px;
+              }
+              select {
+                border: none;
+                background-color: transparent;
+                color: white;
+                padding: 5px 10px;
+              }
+              select option {
+                background-color: #333;
+                color: white;
+              }
+            }
+            &:focus-within {
+              background-color: var(--main-1);
+            }
+          }
+          .table {
+            width: auto;
+            height: 100%;
+            display: grid;
+            overflow: scroll;
+            margin-top: 10px;
+            .grid {
+              width: 100%;
+              grid-template-rows: 100%;
+              display: grid;
+              border-bottom: 1px solid var(--main-1);
+
+              &.columns-head {
+                color: whitesmoke;
+                height: 30px !important;
+                font-size: 13px;
+                background-color: var(--main-2) !important;
+              }
+              &.items {
+                margin: 0;
+                padding: 0;
+                font-size: 13px;
+                height: 30px !important;
+              }
+              &:nth-child(odd) {
+              }
+
+              &:nth-child(even) {
+              }
+              span {
+                border-bottom: 1px solid black;
+                color: white;
+                text-align: center;
+                select {
+                  border: none;
+                  background-color: transparent;
+                  color: white;
+                  padding: 5px 10px;
+                }
+              }
+            }
+          }
+        }
+      }
+      .invalid {
+        border: 2px solid var(--warning);
+        label {
+          color: var(--warning);
+        }
+      }
+    }
+    .columns2 {
+      grid-column: span 2;
+    }
+    .columns3 {
+      grid-column: span 3;
+    }
+    .columns4 {
+      grid-column: span 4;
+    }
+    .other-info {
+      margin-top: 10px;
+    }
+  }
+}
+.bottomModal {
+  width: 100%;
+  height: 50px;
+  padding: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  background-color: var(--main-blue);
+  button {
+    height: 40px;
+    min-height: 40px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    background: var(--success-main-1);
+    text-transform: capitalize;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  .createButton {
+    background: var(--success-main-1);
+  }
+  .editButton {
+    background: var(--warning);
+  }
+  .closeModal {
+    --background: rgb(160, 160, 160);
+  }
+}
+.toastCss {
+  text-align: center;
+  font-size: 17px;
+}
+.documents {
+  .section-filter {
+    width: 100%;
+    height: calc(100%);
+    .section-form {
+      width: 100%;
+      height: 230px;
+      display: grid;
+      grid-template-columns: 1fr 50px;
+      background-color: var(--main-1);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1),
+        0 8px 16px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      padding: 5px;
+      border-radius: 5px;
+
+      .form {
+        width: 100%;
+        height: 190px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        justify-items: center;
+        &.focused {
+          border: 2px solid red;
+        }
+        .card {
+          width: 96%;
+          height: 33px;
+          padding: 5px;
+          background-color: transparent;
+          border: 1px solid var(--main-white);
+          position: relative;
+          border-radius: 5px;
+          margin: 5px;
+          label {
+            background-color: var(--main-1);
+            font-size: 11px;
+            color: var(--main-white);
+            padding: 0px 3px;
+            position: absolute;
+            top: -8px;
+            display: flex;
+            align-items: center;
+            ion-icon {
+              font-size: 17px;
+              margin-right: 3px;
+            }
+          }
+          input {
+            width: 100%;
+            height: 100%;
+            color: var(--main-white);
+            border: none;
+            background-color: var(--main-1);
+            font-size: 11px;
+            &:focus {
+              outline: none;
+            }
+          }
+          &:focus-within {
+            transition: all 0.2s;
+            border-color: transparent; /* Oculta el borde original */
+            box-shadow: 0 0 2px 2px var(--success-main);
+          }
+          &.selector {
+            --border-radius: 0px !important;
+            --width: 70%;
+            --height: 300px;
+            input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+              filter: brightness(1); /* Convierte el icono a negro puro */
+            }
+          }
+        }
+      }
+      .search {
+        width: 100%;
+        height: 100%;
+        button {
+          width: 36px;
+          height: 33px;
+          padding: 5px;
+          margin: 5px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1),
+            /* Sombra suave inferior */ 0 4px 8px rgba(0, 0, 0, 0.1),
+            /* Sombra media */ 0 8px 16px rgba(0, 0, 0, 0.1); /* Sombra más externa */
+          border-radius: 5px;
+          background-color: var(--success-main);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          ion-icon {
+            margin-left: 3px;
+            font-size: 20px;
+            color: white;
+          }
+          p {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+    .section-form-mobile {
+      display: none;
+    }
+  }
+}
+@media (max-width: 768px) {
+  .documents {
+    .section-filter {
+      .section-form {
+        display: none;
+      }
+      .section-form-mobile {
+        width: 100%;
+        height: 50px;
+        display: block;
+        grid-template-columns: 1fr 50px;
+        background-color: var(--main-1);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1),
+          /* Sombra suave inferior */ 0 4px 8px rgba(0, 0, 0, 0.1),
+          /* Sombra media */ 0 8px 16px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        padding: 5px;
+        border-radius: 5px;
+        justify-items: right;
+        align-content: center;
+        button {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          cursor: pointer;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1),
+            0 8px 16px rgba(0, 0, 0, 0.1);
+          background-color: white;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          ion-icon {
+            font-size: 20px;
+            color: var(--main-1);
+          }
+        }
+      }
+      .section-list {
+        height: calc(100% - 60px) !important;
+      }
+    }
+  }
+}

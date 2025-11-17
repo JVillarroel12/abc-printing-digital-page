@@ -1,0 +1,174 @@
+main {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "top-menu"
+    "main-content";
+  height: 100vh;
+  background-color: var(--main-light-4);
+  .top-menu {
+    grid-area: top-menu;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--main-white);
+    color: white;
+    padding: 5px 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12), 0 6px 6px rgba(0, 0, 0, 0.12);
+    margin: 10px 10px 0px 10px;
+    border-radius: 5px;
+    position: relative;
+    z-index: 100;
+    border-bottom: 1px solid rgb(202, 202, 202);
+    div {
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+    img {
+      margin: 0px 0px;
+      width: 80px;
+      height: 40px;
+      margin-top: -4px;
+    }
+    .title {
+      h1 {
+        margin-left: 10px;
+      }
+      .call {
+        margin-left: 10px;
+        padding: 10px;
+        background-color: var(--main-blue);
+        border-radius: 50%;
+        ion-icon {
+          color: white;
+          font-size: 20px;
+        }
+      }
+    }
+    .user {
+      justify-content: flex-end;
+      button {
+        padding: 8px;
+        background-color: var(--main-blue);
+        border-radius: 50%;
+        margin-right: 7px;
+        ion-icon {
+          color: white;
+          font-size: 20px;
+        }
+      }
+      div {
+        width: auto;
+        display: flex;
+        height: 40px;
+        padding: 8px;
+        background-color: var(--main-blue);
+        border-radius: 20px;
+        cursor: pointer;
+
+        ion-icon {
+          color: white;
+          font-size: 20px;
+          margin-right: 3px;
+        }
+        p {
+          color: white;
+        }
+      }
+    }
+    .menu-toggle {
+      width: 40px;
+      height: 35px;
+      background-color: var(--main-blue);
+      color: white;
+      cursor: pointer;
+      font-size: 25px;
+      padding: 5px;
+      display: flex;
+      border-radius: 5px;
+      justify-content: center;
+      align-items: center;
+    }
+    .app-title {
+      margin: 0;
+      font-size: 16px;
+    }
+  }
+  .content {
+    grid-area: main-content;
+    width: 100%;
+    height: 100%;
+    .content-card {
+      width: 100%;
+      height: calc(100% - 50px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .card-select {
+        width: 30% !important;
+        height: 250px;
+        min-width: 180px;
+        background-color: var(--main-white);
+        border: none;
+        margin: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12), 0 6px 6px rgba(0, 0, 0, 0.12);
+        position: relative;
+        z-index: 100;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        flex-direction: column;
+        cursor: pointer;
+        ion-icon {
+          color: var(--main-blue);
+          font-size: 40px;
+        }
+        p {
+          font-size: 25px;
+          color: var(--main-blue);
+        }
+        &:hover {
+          transform: translateY(-8px) scale(1.02) rotate(1deg);
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+          z-index: 10; /* Asegura que la card elevada esté sobre las demás */
+          transition: 0.2s;
+        }
+      }
+    }
+    .content-out {
+      width: 100%;
+      height: 50px;
+      position: relative;
+      padding-left: 10px;
+      button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--danger);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12), 0 6px 6px rgba(0, 0, 0, 0.12);
+        position: relative;
+        border-radius: 10px;
+        z-index: 100;
+        height: 45;
+        padding: 0px 25px;
+        transition: transform 0.3s ease, box-shadow 0.4s ease;
+        ion-icon {
+          font-size: 25px;
+        }
+        p {
+          font-size: 14px;
+          margin-left: 3px;
+        }
+        &:hover {
+          transform: scale(1.05);
+          box-shadow: 0 8px 25px rgba(19, 43, 57, 0.2);
+        }
+      }
+    }
+  }
+}

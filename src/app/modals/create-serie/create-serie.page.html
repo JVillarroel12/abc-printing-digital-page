@@ -1,0 +1,45 @@
+<ion-header class="headerModal">
+  <ion-toolbar>
+    <ion-title slot="start">Registrar Serie</ion-title>
+    <ion-icon name="close-outline" slot="end" (click)="closeModal()"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <main class="modal-add">
+  
+    <section>
+      <div class="card selector" [class.invalid]="!valid.isOrgValid" >
+        <label>Organización</label>
+        <input
+          type="text"
+          readonly
+          (keyup.F2)="selectorOrg()"
+          (dblclick)="selectorOrg()"
+          [(ngModel)]="selectors.org.name"
+          (focusout)="validateField('org_id')"
+          #org
+        >
+        <ion-icon name="search-outline"></ion-icon>
+      </div> 
+      <div class="card normal" 
+      [class.invalid]="!valid.isNumeroValid" 
+      >
+        <label>Número</label>
+        <input
+          type="text"
+          [(ngModel)]="form.numero"
+          (focusout)="validateField('numero')"
+        >
+      </div>      
+
+    </section>
+
+
+  </main>
+
+  <section class="bottomModal" (click)="setDataSerie()">
+      <button >
+        Guardar
+      </button>
+  </section>
+</ion-content>

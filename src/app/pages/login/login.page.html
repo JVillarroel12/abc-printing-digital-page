@@ -1,0 +1,73 @@
+<main>
+  <section class="content-abc">
+    <div class="spectacular">
+      <div *ngFor="let icon of spectacularSource" class="icon">
+        <div class="iconWrapper">
+          <ion-icon [name]="icon" />
+        </div>
+      </div>
+    </div>
+    <div class="content-image">
+      <img src="assets/img/logo3.png" class="round-image" />
+    </div>
+  </section>
+  <section class="content-login">
+    <div class="content-header">
+      <!-- <div class="content-separator">
+        <img src="assets/img/logo2.png" class="round-image" />
+      </div> -->
+      <img src="assets/img/logo2.png" class="round-image" />
+      <p>Imprenta Digital</p>
+
+      <h1>Iniciar sesión</h1>
+    </div>
+
+    <div class="content-card">
+      <div class="card">
+        <label>
+          <ion-icon name="person"></ion-icon>
+          Usuario
+        </label>
+        <input
+          placeholder="Ingresar usuario"
+          [(ngModel)]="form.user"
+          type="text"
+          [ngModelOptions]="{standalone: true}"
+          #userInput
+        />
+      </div>
+      <div class="card">
+        <label>
+          <ion-icon name="key"></ion-icon>
+          Clave
+        </label>
+        <input
+          placeholder="Ingresar clave"
+          [(ngModel)]="form.password"
+          type="password"
+          [ngModelOptions]="{standalone: true}"
+          (keydown)="pressLogin($event)"
+        />
+      </div>
+      <a (click)="gotoForgotPassword()" class="changePassword"
+        >¿Ha olvidado su contraseña?</a
+      >
+    </div>
+
+    <ion-button class="content-button" (click)="onLogin()">
+      <p>Ingresar</p>
+    </ion-button>
+  </section>
+
+  <p
+    style="
+      position: absolute;
+      z-index: 99;
+      right: 0;
+      bottom: 0;
+      margin-right: 5px;
+    "
+  >
+    V: 1.2.1
+  </p>
+</main>

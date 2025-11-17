@@ -1,0 +1,102 @@
+main {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(231, 231, 231);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1),
+    /* Sombra suave inferior */ 0 4px 8px rgba(0, 0, 0, 0.1),
+    /* Sombra media */ 0 8px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  .header {
+    width: 100%;
+    height: 60px;
+    padding: 10px;
+    display: flex;
+    div {
+      width: 100%;
+      height: 100%;
+      background-color: var(--main-blue);
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        color: white;
+      }
+    }
+  }
+
+  .section-form {
+    width: 100%;
+    height: calc(100% - 110px);
+    padding: 10px;
+    .form {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      overflow: hidden;
+      // border-radius: 10px;
+      // background-color: var(--marine-water);
+      .card {
+        background-color: rgb(231, 231, 231);
+        border: 2px solid var(--main-blue);
+        label {
+          background-color: rgb(231, 231, 231);
+          color: var(--main-blue);
+        }
+        input {
+          background-color: rgb(231, 231, 231);
+          color: var(--main-blue);
+        }
+        &.selector {
+          ion-icon {
+            color: var(--main-blue);
+          }
+          input[type="month"]::-webkit-calendar-picker-indicator {
+            filter: brightness(
+              0
+            ) !important; /* Convierte el icono a negro puro */
+          }
+        }
+      }
+    }
+  }
+  .section-footer {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background-color: var(--main-2);
+    border-radius: 0px 0px 5px 5px;
+    button {
+      height: 35px;
+      padding: 10px;
+      margin-right: 15px;
+      border-radius: 5px;
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+        0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+      font-weight: bold;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    ion-icon {
+      margin-right: 5px;
+      font-size: 25px;
+    }
+    .download {
+      background-color: var(--success-main);
+    }
+    .view {
+      background-color: var(--salmon);
+    }
+  }
+}

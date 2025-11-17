@@ -1,0 +1,240 @@
+main {
+  width: 100%;
+  height: 100%;
+  background-color: var(--c-principal-othe);
+  border-radius: 10px;
+  .header {
+    width: 100%;
+    height: 60px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    div {
+      width: 100%;
+      height: 100%;
+      background-color: var(--main-light-3);
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        color: black;
+      }
+    }
+    button {
+      width: 220px;
+      height: 40px;
+      padding: 5px;
+      background-color: var(--success-main);
+      display: flex;
+      border-radius: 5px;
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+        0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+      font-weight: bold;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      ion-icon {
+        margin-right: 5px;
+        font-size: 25px;
+      }
+    }
+    .headerSelected {
+      background-color: var(--marine-water);
+      color: rgb(12, 10, 10) !important;
+      border-radius: 5px;
+    }
+  }
+
+  .section-filter {
+    width: 100%;
+    height: calc(100% - 60px);
+    padding: 10px;
+    .form {
+      width: 100%;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      .card {
+        width: 100%;
+        height: 40px;
+        padding: 5px;
+        background-color: transparent;
+        border: 2px solid var(--main-light-3);
+        position: relative;
+        border-radius: 5px;
+        margin: 5px;
+        label {
+          background-color: var(--c-principal-othe);
+          font-size: 14px;
+          color: white;
+          padding: 2px;
+          position: absolute;
+          top: -11px;
+          display: flex;
+          align-items: center;
+          ion-icon {
+            font-size: 17px;
+            margin-right: 3px;
+          }
+        }
+        input {
+          width: 100%;
+          height: 100%;
+          color: white;
+          border: none;
+          background-color: var(--c-principal-othe);
+          font-size: 14px;
+          &:focus {
+            outline: none;
+          }
+        }
+        &.selector {
+          --border-radius: 0px !important;
+          --width: 70%;
+          --height: 300px;
+        }
+      }
+    }
+    .list {
+      width: 100%;
+      height: calc(100% - 70px);
+      margin-top: 10px;
+      background-color: var(--c-principal-othe);
+      display: grid;
+      overflow: auto;
+      border-radius: 5px;
+      align-content: flex-start;
+      .grid {
+        width: 100%;
+        height: 100%;
+        grid-template-rows: auto;
+        display: grid;
+        grid-template-columns: 100px 150px 150px minmax(600px, 1fr) 250px 200px 150px;
+        grid-template-areas: "status contribuyente rif social email numeracionAutomatica buttons";
+        &__status,
+        &__contribuyente,
+        &__rif,
+        &__social,
+        &__buttons,
+        &__numeracionAutomatica,
+        &__email {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        &__status {
+          grid-area: status;
+        }
+        &__contribuyente {
+          grid-area: contribuyente;
+        }
+        &__rif {
+          grid-area: rif;
+        }
+        &__email {
+          grid-area: email;
+        }
+        &__social {
+          grid-area: social;
+        }
+        &__numeracionAutomatica {
+          grid-area: numeracionAutomatica;
+        }
+        &__buttons {
+          grid-area: buttons;
+        }
+
+        &:nth-child(odd) {
+          width: 100%;
+          background-color: var(--main-2) !important;
+        }
+
+        &:nth-child(even) {
+          width: 100%;
+          background-color: var(--main-1) !important;
+        }
+        &.columns-head {
+          color: whitesmoke;
+          height: 40px !important;
+          font-size: 13px;
+          background-color: transparent !important;
+        }
+        &.items {
+          margin: 0;
+          padding: 0;
+          font-size: 13px;
+          height: 30px !important;
+          &:hover {
+            background-color: var(--main-light-1) !important;
+          }
+        }
+        span {
+          border-bottom: 1px solid var(--main-light-3);
+          color: white;
+          text-align: center;
+          width: auto;
+          select {
+            border: none;
+            background-color: transparent;
+            color: white;
+            padding: 5px 10px;
+          }
+          ion-icon {
+            font-size: 20px;
+          }
+          .editbutton {
+            padding: 1px;
+            border-radius: 2px;
+            background-color: var(--warning);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+          div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 !important;
+            padding: 1px !important;
+            width: 20px;
+            height: 20px !important;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+              0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+            p {
+              margin: 0;
+              padding: 0;
+            }
+          }
+        }
+        .active {
+          background: var(--success-main);
+        }
+        .noActive {
+          background: var(--danger);
+        }
+      }
+      .columns6 {
+        grid-column: span 6;
+      }
+      .productSelected {
+        background-color: var(--ion-color-warning) !important;
+        span {
+          color: white !important;
+        }
+      }
+    }
+  }
+}

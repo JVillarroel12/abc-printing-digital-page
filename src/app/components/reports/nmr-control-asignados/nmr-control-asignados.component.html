@@ -1,0 +1,113 @@
+<main>
+  <section class="header">
+    <div class="card-header">
+      <span
+        >EMISIÓN DE NÚMEROS DE CONTROL -
+        {{ authService.selectedMenuItem.label }}</span
+      >
+    </div>
+  </section>
+  <section class="section-form">
+    <div class="form" *ngIf="authService.selectedMenuItem.id == '100'">
+      <div class="card groupItems">
+        <label>Seleccionar Año:</label>
+        <select
+          [(ngModel)]="form.firstAnioSeleccionado"
+          (change)="onFirstYearChange($event)"
+        >
+          <option *ngFor="let year of years" [value]="year">
+            <p>{{ year }}</p>
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="form" *ngIf="authService.selectedMenuItem.id == '101'">
+      <div class="card groupItems">
+        <label>Seleccionar Año:</label>
+        <select
+          [(ngModel)]="form.firstAnioSeleccionado"
+          (change)="onFirstYearChange($event)"
+        >
+          <option *ngFor="let year of years" [value]="year">
+            <p>{{ year }}</p>
+          </option>
+        </select>
+      </div>
+      <div class="card groupItems">
+        <label>Seleccionar Año:</label>
+        <select
+          [(ngModel)]="form.lastAnioSeleccionado"
+          (change)="onLastYearChange($event)"
+        >
+          <option *ngFor="let year of years" [value]="year">
+            <p>{{ year }}</p>
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form" *ngIf="authService.selectedMenuItem.id == '102'">
+      <div class="card groupItems">
+        <label>Seleccionar Año:</label>
+        <select
+          [(ngModel)]="form.firstAnioSeleccionado"
+          (change)="onFirstYearChange($event)"
+        >
+          <option *ngFor="let year of years" [value]="year">
+            <p>{{ year }}</p>
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="form" *ngIf="authService.selectedMenuItem.id == '103'">
+      <div class="card selector">
+        <label>Seleccionar Mes:</label>
+        <input
+          type="month"
+          [(ngModel)]="form.firstMesSeleccionado"
+          (change)="onFirstMonthChange($event)"
+        />
+      </div>
+    </div>
+    <div class="form" *ngIf="authService.selectedMenuItem.id == '105'">
+      <div class="card selector">
+        <label>Seleccionar Mes:</label>
+        <input
+          type="month"
+          [(ngModel)]="form.firstMesSeleccionado"
+          (change)="onFirstMonthChange($event)"
+        />
+      </div>
+    </div>
+    <div class="form" *ngIf="authService.selectedMenuItem.id == '106'">
+      <div class="card selector">
+        <label>Seleccionar Mes:</label>
+        <input
+          type="month"
+          [(ngModel)]="form.firstMesSeleccionado"
+          (change)="onFirstMonthChange($event)"
+        />
+      </div>
+    </div>
+    <div class="form" *ngIf="authService.selectedMenuItem.id == '110'">
+      <div class="card selector">
+        <label>Seleccionar Mes:</label>
+        <input
+          type="month"
+          [(ngModel)]="form.firstMesSeleccionado"
+          (change)="onFirstMonthChange($event)"
+        />
+      </div>
+    </div>
+  </section>
+  <section class="section-footer">
+    <button class="view" (click)="getAllDocument('pdf')">
+      <ion-icon name="eye"></ion-icon>
+      <span>PDF</span>
+    </button>
+    <button class="download" (click)="getAllDocument('excel')">
+      <ion-icon name="arrow-down-circle"></ion-icon>
+      <span>Excel</span>
+    </button>
+  </section>
+</main>

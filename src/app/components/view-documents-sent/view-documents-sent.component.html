@@ -1,0 +1,269 @@
+<main>
+  <section class="header">
+    <div
+      class="card"
+      *ngFor="let data of headerFilter"
+      (click)="setHeaderSelected(data)"
+      [ngClass]="{ headerSelected: headerSelected.id == data.id }"
+    >
+      <img [src]="data.img" alt="" />
+      <span>{{ data.name }}</span>
+    </div>
+  </section>
+  <section class="section-filter">
+    <div class="form">
+      <div class="card">
+        <label for="">
+          <ion-icon name="search"></ion-icon>
+          Buscar
+        </label>
+        <input placeholder="Buscar " [(ngModel)]="form.name" #order />
+      </div>
+
+      <div class="card selector">
+        <label>Fecha Desde:</label>
+        <input
+          type="datetime-local"
+          placeholder="Fecha Desde"
+          [(ngModel)]="form.fechaInicio"
+          (change)="onInicioDateChange($event)"
+        />
+      </div>
+
+      <div class="card selector">
+        <label>Fecha Hasta:</label>
+        <input
+          type="datetime-local"
+          placeholder="Fecha gasta"
+          [(ngModel)]="form.fechaFin"
+          (change)="onFinDateChange($event)"
+        />
+      </div>
+    </div>
+    <div class="list">
+      <div class="grid columns-head">
+        <span class="grid__arrow"> </span>
+        <span class="grid__estado">
+          <ion-label>Anulado</ion-label>
+        </span>
+        <span class="grid__email">
+          <ion-label>Enviar</ion-label>
+        </span>
+        <span class="grid__tipoDocumento">
+          <ion-label>Tipo. Documento</ion-label>
+        </span>
+        <span class="grid__acquirer">
+          <ion-label>Adquiriente</ion-label>
+        </span>
+        <span class="grid__bpartner">
+          <ion-label>Tercero</ion-label>
+        </span>
+        <span class="grid__serie">
+          <ion-label>Serie</ion-label>
+        </span>
+        <span class="grid__nmrDocument">
+          <ion-label>N. Documento</ion-label>
+        </span>
+        <span class="grid__nmrDocumentDig">
+          <ion-label>N. Documento Digital</ion-label>
+        </span>
+        <span class="grid__nmrControl">
+          <ion-label>N. Control</ion-label>
+        </span>
+        <span class="grid__fEmission">
+          <ion-label>Fecha Emision</ion-label>
+        </span>
+        <span class="grid__fEmissionDig">
+          <ion-label>Fecha Emision Digital</ion-label>
+        </span>
+      </div>
+
+      <span
+        class="grid items"
+        *ngFor="let document of filteredDocuments | dynamicFilter : form.name"
+      >
+        <span class="grid__arrow">
+          <ion-icon
+            name="caret-forward-outline"
+            *ngIf="document.open == false"
+            (click)="openDocument(document)"
+          ></ion-icon>
+          <ion-icon
+            name="caret-down-outline"
+            *ngIf="document.open == true"
+            (click)="openDocument(document)"
+          ></ion-icon>
+        </span>
+        <span class="grid__estado">
+          <div
+            [ngClass]="{
+              anulado: document.anulado == true,
+              noAnulado: document.anulado == false
+            }"
+          >
+            <p *ngIf="document.anulado == true">SI</p>
+            <p *ngIf="document.anulado == false">NO</p>
+          </div>
+        </span>
+        <span class="grid__email">
+          <button class="email" (click)="modalSendEmail(document)">
+            <ion-icon name="mail-outline"></ion-icon>
+          </button>
+        </span>
+        <span class="grid__tipoDocumento">
+          <div>
+            <p
+              *ngIf="document.tipo_documento == '01'"
+              [ngClass]="{ factura: document.tipo_documento == '01' }"
+            >
+              FACTURA
+            </p>
+            <p
+              *ngIf="document.tipo_documento == '02'"
+              [ngClass]="{ credito: document.tipo_documento == '02' }"
+            >
+              NOTA. CRÉDITO
+            </p>
+            <p
+              *ngIf="document.tipo_documento == '03'"
+              [ngClass]="{ debito: document.tipo_documento == '03' }"
+            >
+              NOTA. DÉBITO
+            </p>
+            <p
+              *ngIf="
+                document.tipo_documento == '04' &&
+                document.guia_despacho.es_guia_despacho == '1'
+              "
+              [ngClass]="{
+                despacho:
+                  document.tipo_documento == '04' &&
+                  document.guia_despacho.es_guia_despacho == '1'
+              }"
+            >
+              GUÍA. DESPACHO
+            </p>
+            <p
+              *ngIf="
+                document.tipo_documento == '04' &&
+                document.guia_despacho.es_guia_despacho == '0'
+              "
+              [ngClass]="{
+                entrega:
+                  document.tipo_documento == '04' &&
+                  document.guia_despacho.es_guia_despacho == '0'
+              }"
+            >
+              ORDEN. ENTREGA
+            </p>
+            <p
+              *ngIf="document.tipo_documento == '05'"
+              [ngClass]="{ retencion: document.tipo_documento == '05' }"
+            >
+              COMP. RETENCIÓN IVA
+            </p>
+            <p
+              *ngIf="document.tipo_documento == '06'"
+              [ngClass]="{ retencion: document.tipo_documento == '06' }"
+            >
+              COMP. RETENCIÓN ISLR
+            </p>
+          </div>
+        </span>
+        <span class="grid__acquirer">{{
+          document.comprador?.razon_social
+        }}</span>
+        <span class="grid__bpartner">{{ document.tercero?.razon_social }}</span>
+        <span class="grid__serie">{{ document.serie }}</span>
+        <span class="grid__nmrDocument">{{ document.numero_documento }}</span>
+        <span class="grid__nmrDocumentDig">{{
+          document.numero_documento_dig
+        }}</span>
+        <span class="grid__nmrControl">{{ document.numero_control_dig }}</span>
+        <span class="grid__fEmission">{{ document.fecha_emision }}</span>
+        <span class="grid__fEmissionDig">{{
+          document.fecha_asignacion_digital
+        }}</span>
+
+        <!-- LINES -->
+        <div
+          class="grid__childs childs"
+          *ngIf="
+            (document.open && document.tipo_documento != '05') ||
+            (document.open && document.tipo_documento != '06')
+          "
+        >
+          <div class="gridd columns-head-sucursal">
+            <span class="gridd__name head">
+              <ion-label>Nombre</ion-label>
+            </span>
+            <span class="gridd__cant head">
+              <ion-label>Cant</ion-label>
+            </span>
+            <span class="gridd__price head">
+              <ion-label>Precio Uni. (Bs)</ion-label>
+            </span>
+            <span class="gridd__porcentIva head">
+              <ion-label>(%) IVA</ion-label>
+            </span>
+            <span class="gridd__iva head">
+              <ion-label>Precio IVA</ion-label>
+            </span>
+            <span class="gridd__total head">
+              <ion-label>Precio Total (Bs)</ion-label>
+            </span>
+          </div>
+
+          <span class="gridd" *ngFor="let line of document.lines">
+            <span class="gridd__name subitem">{{ line.descripcion }}</span>
+            <span class="gridd__cant subitem">{{ line.cantidad }}</span>
+            <span class="gridd__price subitem">{{ line.precio_unitario }}</span>
+            <span class="gridd__porcentIva subitem">{{ line.tasa_iva }}</span>
+            <span class="gridd__iva subitem">{{ line.valor_iva }}</span>
+            <span class="gridd__total subitem">{{
+              line.valor_total_item
+            }}</span>
+          </span>
+        </div>
+        <!-- LINES RETENCION-->
+        <div
+          class="grid__childs childs"
+          *ngIf="
+            document.open &&
+            (document.tipo_documento == '05' || document.tipo_documento == '06')
+          "
+        >
+          <div class="gridd columns-head-sucursal">
+            <span class="gridd__name head">
+              <ion-label>Nº. Factura Afectada</ion-label>
+            </span>
+            <span class="gridd__cant head">
+              <ion-label>Base Imponible</ion-label>
+            </span>
+            <span class="gridd__price head">
+              <ion-label>(%) IVA</ion-label>
+            </span>
+            <span class="gridd__porcentIva head">
+              <ion-label>Monto IVA</ion-label>
+            </span>
+            <span class="gridd__iva head">
+              <ion-label>Monto Total</ion-label>
+            </span>
+            <span class="gridd__total head">
+              <ion-label>Monto Retenido</ion-label>
+            </span>
+          </div>
+
+          <span class="gridd" *ngFor="let line of document.lines">
+            <span class="gridd__name subitem"></span>
+            <span class="gridd__cant subitem">{{ line.base_imponible }}</span>
+            <span class="gridd__price subitem">{{ line.porcentaje_iva }}</span>
+            <span class="gridd__porcentIva subitem">{{ line.monto_iva }}</span>
+            <span class="gridd__iva subitem">{{ line.monto_total }}</span>
+            <span class="gridd__total subitem">{{ line.retenido_iva }}</span>
+          </span>
+        </div>
+      </span>
+    </div>
+  </section>
+</main>

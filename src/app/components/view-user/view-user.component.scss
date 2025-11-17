@@ -1,0 +1,258 @@
+main {
+  width: 100%;
+  height: 100%;
+  background-color: var(--main-white);
+  border-radius: 10px;
+  .header {
+    width: 100%;
+    height: 60px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    div {
+      width: 100%;
+      height: 100%;
+      background-color: var(--main-blue);
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      border: none;
+      span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        color: white;
+      }
+    }
+    button {
+      width: 220px;
+      height: 40px;
+      padding: 5px;
+      background-color: var(--success-main);
+      display: flex;
+      border-radius: 5px;
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+        0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+      font-weight: bold;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      ion-icon {
+        margin-right: 5px;
+        font-size: 25px;
+      }
+    }
+  }
+
+  .section-filter {
+    width: 100%;
+    height: calc(100% - 60px);
+    padding: 10px 0px;
+    .form {
+      width: 100%;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      .card {
+        width: 100%;
+        height: 40px;
+        padding: 5px;
+        background-color: transparent;
+        border: 2px solid var(--main-blue);
+        position: relative;
+        border-radius: 5px;
+        margin: 5px;
+        label {
+          background-color: var(--main-white);
+          font-size: 14px;
+          color: var(--main-blue);
+          padding: 2px;
+          position: absolute;
+          top: -11px;
+          display: flex;
+          align-items: center;
+          ion-icon {
+            font-size: 17px;
+            margin-right: 3px;
+          }
+        }
+        input {
+          width: 100%;
+          height: 100%;
+          color: var(--main-blue);
+          border: none;
+          background-color: var(--main-white);
+          font-size: 14px;
+          &:focus {
+            outline: none;
+          }
+        }
+        &.selector {
+          --border-radius: 0px !important;
+          --width: 70%;
+          --height: 300px;
+        }
+      }
+    }
+    .list {
+      width: 100%;
+      height: calc(100% - 70px);
+      margin-top: 10px;
+      display: grid;
+      overflow: auto;
+      border-radius: 5px;
+      overflow: scroll;
+
+      align-content: flex-start;
+      .grid {
+        width: 100%;
+        height: 100%;
+        grid-template-rows: auto;
+        display: grid;
+        grid-template-columns: 50px 50px 100px 200px minmax(150px, 1fr) 150px 150px;
+        grid-template-areas: "status block portal user email tipo buttons";
+        &__status,
+        &__block,
+        &__portal,
+        &__user,
+        &__tipo,
+        &__buttons,
+        &__email {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        &__status {
+          grid-area: status;
+        }
+        &__block {
+          grid-area: block;
+          ion-icon {
+            padding: 2px;
+            background-color: var(--danger);
+            border-radius: 5px;
+            color: var(--main-white);
+            cursor: pointer;
+          }
+        }
+        &__portal {
+          grid-area: portal;
+        }
+        &__user {
+          grid-area: user;
+        }
+        &__email {
+          grid-area: email;
+        }
+        &__tipo {
+          grid-area: tipo;
+        }
+        &__buttons {
+          grid-area: buttons;
+        }
+
+        &:nth-child(odd) {
+          width: 100%;
+        }
+
+        &:nth-child(even) {
+          width: 100%;
+        }
+        &.columns-head {
+          height: 40px !important;
+          font-size: 13px;
+          padding: 7px;
+          span {
+            color: var(--main-blue);
+            font-weight: bold;
+          }
+        }
+        &.items {
+          margin: 0;
+          padding: 7px;
+          font-size: 11px;
+          height: auto;
+          border-bottom: 1px solid var(--main-light-3);
+          span {
+            color: var(--main-blue) !important;
+          }
+        }
+        span {
+          text-align: center;
+          width: auto;
+          select {
+            border: none;
+            background-color: transparent;
+            color: white;
+            padding: 5px 10px;
+          }
+          ion-icon {
+            font-size: 17px;
+          }
+          .editbutton {
+            padding: 1px;
+            border-radius: 2px;
+            background-color: var(--warning);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+          div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 !important;
+            width: 20px;
+            height: 20px !important;
+            border-radius: 5px;
+            font-size: 11px;
+            // box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+            //   0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+            p {
+              margin: 0;
+              padding: 5px;
+              border-radius: 10px;
+            }
+          }
+          button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+              0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+            border-radius: 10px;
+            padding: 5px;
+            &.email {
+              background-color: var(--success-main);
+            }
+            &.print {
+              background-color: var(--primary);
+            }
+          }
+        }
+        .active {
+          background: var(--success-main);
+        }
+        .noActive {
+          background: var(--danger);
+        }
+      }
+      .columns6 {
+        grid-column: span 6;
+      }
+      .productSelected {
+        background-color: var(--ion-color-warning) !important;
+        span {
+          color: white !important;
+        }
+      }
+    }
+  }
+}

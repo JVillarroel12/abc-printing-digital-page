@@ -1,7 +1,238 @@
-<div class="app-container">
-  <app-header></app-header>
-  <main class="main-content">
+<main class="layout" *ngIf="!isLoginPage && routeChecked">
+  <ion-menu
+    side="start"
+    menuId="mobile-menu"
+    contentId="main-content-router"
+    [class.custom-sidebar]="true"
+  >
+    <div class="logo">
+      <img src="assets/img/logo6.png" alt="" />
+    </div>
+    <div class="menu-labels" [ngClass]="{ 'item-collapsed': !isMenuOpen }">
+      <ng-container *ngFor="let item of authService.menuItems">
+        <div
+          *ngIf="item.view"
+          class="menu-item"
+          (click)="handleMenuItemClick(item)"
+          [ngClass]="{
+            'item-collapsed': !isMenuOpen,
+            selected:
+              selectedMenuItem === item.label && item.subItems.length == 0,
+            'has-submenu-open': item.isOpen && item.subItems.length
+          }"
+        >
+          <div (click)="selectMenuItem(item.label)">
+            <span class="title">
+              <ion-icon [name]="item.icon"></ion-icon>
+              <span class="label">{{ item.label }}</span>
+            </span>
+
+            <ion-icon
+              *ngIf="item.subItems && item.subItems.length"
+              [name]="item.isOpen ? 'chevron-down' : 'chevron-forward'"
+              class="icon toggle-icon"
+              (click)="toggleSubMenu(item); $event.stopPropagation()"
+            >
+            </ion-icon>
+          </div>
+
+          <div
+            *ngIf="item.subItems && item.subItems.length"
+            class="submenu-container"
+            [class.open]="item.isOpen"
+          >
+            <div class="submenu">
+              <div
+                *ngFor="let subItem of item.subItems"
+                class="submenu-item"
+                [ngClass]="{ selected: selectedMenuItem === subItem.id }"
+                (click)="handleMenuItemClick(subItem); $event.stopPropagation()"
+              >
+                <ion-icon [name]="subItem.icon"></ion-icon>
+                <span class="label">{{ subItem.label }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <div class="close-sesion" (click)="back()">
+      <ion-icon name="log-out-outline"></ion-icon>
+      <p>Regresar</p>
+    </div>
+  </ion-menu>
+
+  <section class="top-menu">
+    <div class="title">
+      <button class="menu-toggle" (click)="openMobileMenu()">
+        <ion-icon name="menu-outline"></ion-icon>
+      </button>
+      <img src="assets/img/logo2.png" class="round-image" />
+    </div>
+
+    <div class="user">
+      <button class="call" (click)="openModalContact()">
+        <ion-icon name="call"></ion-icon>
+      </button>
+      <div (click)="showProfile($event)">
+        <ion-icon name="person"></ion-icon>
+        <p>{{ authService.user.user.usuario }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="sidebar desktop-menu"
+    [class.collapsed]="!isMenuOpen"
+    id="main-content-router"
+  >
+    <div class="menu-labels" [ngClass]="{ 'item-collapsed': !isMenuOpen }">
+      <!-- <ng-container *ngFor="let item of authService.menuItems">
+        <div
+          *ngIf="item.view"
+          class="menu-item"
+          (click)="handleMenuItemClick(item)"
+          [ngClass]="{
+            'item-collapsed': !isMenuOpen,
+            selected:
+              selectedMenuItem === item.label && item.subItems.length == 0,
+            'has-submenu-open': item.isOpen && item.subItems.length
+          }"
+        >
+          <div (click)="selectMenuItem(item.label)">
+            <span class="title">
+              <ion-icon [name]="item.icon"></ion-icon>
+              <span class="label" *ngIf="isMenuOpen">{{ item.label }}</span>
+            </span>
+
+            <ion-icon
+              *ngIf="item.subItems && item.subItems.length"
+              [name]="item.isOpen ? 'chevron-down' : 'chevron-forward'"
+              class="icon toggle-icon"
+              (click)="toggleSubMenu(item); $event.stopPropagation()"
+            >
+            </ion-icon>
+          </div>
+
+          <div
+            *ngIf="item.subItems && item.subItems.length"
+            class="submenu-container"
+            [class.open]="item.isOpen"
+          >
+            <div class="submenu">
+              <div
+                *ngFor="let subItem of item.subItems"
+                class="submenu-item"
+                [ngClass]="{ selected: selectedMenuItem === subItem.id }"
+                (click)="handleMenuItemClick(subItem); $event.stopPropagation()"
+              >
+                <ion-icon [name]="subItem.icon"></ion-icon>
+                <span class="label" *ngIf="isMenuOpen">{{
+                  subItem.label
+                }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container> -->
+      <ng-container *ngFor="let item of authService.menuItems">
+        <div
+          *ngIf="item.view"
+          class="menu-item"
+          (click)="handleMenuItemClick(item)"
+          [ngClass]="{
+            'item-collapsed': !isMenuOpen,
+            selected:
+              selectedMenuItem === item.label &&
+              (!item.subItems || item.subItems.length == 0),
+            'has-submenu-open':
+              item.isOpen && item.subItems && item.subItems.length
+          }"
+        >
+          <div>
+            <span class="title">
+              <ion-icon [name]="item.icon"></ion-icon>
+              <span class="label" *ngIf="isMenuOpen">{{ item.label }}</span>
+            </span>
+
+            <ion-icon
+              *ngIf="item.subItems && item.subItems.length"
+              [name]="item.isOpen ? 'chevron-down' : 'chevron-forward'"
+              class="icon toggle-icon"
+              (click)="$event.stopPropagation()"
+            >
+            </ion-icon>
+          </div>
+
+          <div
+            *ngIf="item.subItems && item.subItems.length"
+            class="submenu-container"
+            [class.open]="item.isOpen"
+          >
+            <div class="submenu level-2">
+              <div
+                *ngFor="let subItem of item.subItems"
+                class="submenu-item"
+                [ngClass]="{
+                  selected:
+                    selectedMenuItem === subItem.id &&
+                    (!subItem.subItems || subItem.subItems.length === 0),
+                  'has-submenu-open':
+                    subItem.isOpen &&
+                    subItem.subItems &&
+                    subItem.subItems.length
+                }"
+                (click)="handleSubItemClick(subItem); $event.stopPropagation()"
+              >
+                <div class="level-2-content">
+                  <ion-icon [name]="subItem.icon"></ion-icon>
+                  <span class="label" *ngIf="isMenuOpen">{{
+                    subItem.label
+                  }}</span>
+
+                  <ion-icon
+                    *ngIf="subItem.subItems && subItem.subItems.length"
+                    [name]="subItem.isOpen ? 'chevron-down' : 'chevron-forward'"
+                    class="icon toggle-icon"
+                    (click)="$event.stopPropagation()"
+                  >
+                  </ion-icon>
+                </div>
+
+                <div
+                  *ngIf="subItem.subItems && subItem.subItems.length"
+                  class="submenu-container level-3"
+                  [class.open]="subItem.isOpen"
+                >
+                  <div class="submenu">
+                    <div
+                      *ngFor="let subSubItem of subItem.subItems"
+                      class="submenu-item level-3"
+                      [ngClass]="{
+                        selected: selectedMenuItem === subSubItem.id
+                      }"
+                      (click)="
+                        handleMenuItemClick(subSubItem);
+                        $event.stopPropagation()
+                      "
+                    >
+                      <!-- <ion-icon [name]="subSubItem.icon"></ion-icon> -->
+                      <span class="label" *ngIf="isMenuOpen">{{
+                        subSubItem.label
+                      }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </section>
+
+  <section class="main-content" id="main-content-router">
     <router-outlet></router-outlet>
-  </main>
-  <app-footer></app-footer>
-</div>
+  </section>
+</main>
+<router-outlet *ngIf="isLoginPage && routeChecked"></router-outlet>

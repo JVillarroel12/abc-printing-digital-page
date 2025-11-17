@@ -1,0 +1,31 @@
+<main>
+  <section class="search">
+    <div class="card">
+      <label for="">Buscar empresa</label>
+      <input placeholder="Buscar " [(ngModel)]="form.name" #org />
+    </div>
+  </section>
+  <section class="list" id="containerLines">
+    <div class="grid columns-head">
+      <span class="grid__name">
+        <ion-label>Razón social</ion-label>
+      </span>
+      <span class="grid__rif">
+        <ion-label>RIF</ion-label>
+      </span>
+      <span class="grid__name2">
+        <ion-label>Nombre comercial</ion-label>
+      </span>
+    </div>
+    <span
+      class="grid items lineSelected"
+      *ngFor="let org of filteredOrgs | dynamicFilter: form.name"
+      [ngClass]="{'orgSelected': org.org_id == lineOrgSelected.org_id}"
+      (dblclick)="selectedOrg(org)"
+    >
+      <span class="grid__name">{{org.name}}</span>
+      <span class="grid__rif">{{org.value}}</span>
+      <span class="grid__name2">{{org.social_name}}</span>
+    </span>
+  </section>
+</main>

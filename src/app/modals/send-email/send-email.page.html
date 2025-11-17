@@ -1,0 +1,36 @@
+<ion-header [translucent]="true" class="headerModal">
+  <ion-toolbar>
+    <ion-title>Enviar documento</ion-title>
+    <ion-icon name="close-outline" slot="end" (click)="closeModal()"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <main class="modal-add">
+    <section>
+      <div class="card normal columns4" [class.invalid]="!valid.isEmailValid">
+        <label>Email 1</label>
+        <input
+          type="email"
+          [(ngModel)]="form.email1"
+          (focusout)="validateField('email')"
+        />
+      </div>
+      <div class="card normal columns4">
+        <label>Email 2</label>
+        <input type="email" [(ngModel)]="form.email2" />
+      </div>
+      <div class="card normal columns4">
+        <label>Email 3</label>
+        <input type="email" [(ngModel)]="form.email3" />
+      </div>
+      <div class="card normal columns4">
+        <label>Email 4</label>
+        <input type="email" [(ngModel)]="form.email4" />
+      </div>
+    </section>
+  </main>
+  <section class="bottomModal" (click)="setDataUser()">
+    <button>Enviar</button>
+  </section>
+</ion-content>

@@ -1,0 +1,140 @@
+<main>
+  <section class="header">
+    <div class="card">
+      <span>Secuencias</span>
+    </div>
+    <button (click)="openModalSequence()">
+      <ion-icon name="add"></ion-icon>
+      <span>NUEVO REGISTRO</span>
+    </button>
+  </section>
+  <section class="section-filter">
+    <div class="form">
+      <div class="card">
+        <label for="">
+          <ion-icon name="search"></ion-icon>
+          Buscar
+        </label>
+        <input placeholder="Buscar " [(ngModel)]="form.name" #order />
+      </div>
+
+      <div class="card selector">
+        <label>Fecha Desde:</label>
+        <input
+          type="datetime-local"
+          placeholder="Fecha Desde"
+          [(ngModel)]="form.fechaInicio"
+          (change)="onInicioDateChange($event)"
+        />
+      </div>
+
+      <div class="card selector">
+        <label>Fecha Hasta:</label>
+        <input
+          type="datetime-local"
+          placeholder="Fecha gasta"
+          [(ngModel)]="form.fechaFin"
+          (change)="onFinDateChange($event)"
+        />
+      </div>
+    </div>
+    <div class="list" id="containerLines">
+      <div class="grid columns-head">
+        <span class="grid__arrow"> </span>
+        <span class="grid__estado">
+          <ion-label>Activa</ion-label>
+        </span>
+        <span class="grid__org">
+          <ion-label>Organización</ion-label>
+        </span>
+        <span class="grid__title">
+          <ion-label>Titulo</ion-label>
+        </span>
+        <span class="grid__prefijo">
+          <ion-label>Prefijo</ion-label>
+        </span>
+        <span class="grid__desde">
+          <ion-label>Sufijo</ion-label>
+        </span>
+        <span class="grid__hasta">
+          <ion-label>Hasta</ion-label>
+        </span>
+        <span class="grid__correlativo">
+          <ion-label>Correlativo</ion-label>
+        </span>
+        <span class="grid__buttons">
+          <ion-label></ion-label>
+        </span>
+      </div>
+      <span
+        class="grid items"
+        *ngFor="let sequence of filteredSequence | dynamicFilter : form.name"
+      >
+        <span class="grid__arrow">
+          <ion-icon
+            name="caret-forward-outline"
+            *ngIf="sequence.open == false"
+            (click)="openSequence(sequence)"
+          ></ion-icon>
+          <ion-icon
+            name="caret-down-outline"
+            *ngIf="sequence.open == true"
+            (click)="openSequence(sequence)"
+          ></ion-icon>
+        </span>
+        <span class="grid__estado">
+          <div
+            [ngClass]="{
+              active: sequence.isactive == true,
+              noActive: sequence.isactive == false
+            }"
+          >
+            <p *ngIf="sequence.isactive == true">SI</p>
+            <p *ngIf="sequence.isactive == false">NO</p>
+          </div>
+        </span>
+        <span class="grid__org">{{ sequence.org_id_src.name }}</span>
+        <span class="grid__title">{{ sequence.name }}</span>
+        <span class="grid__prefijo">{{ sequence.prefix }}</span>
+        <span class="grid__desde">{{ sequence.suffix }}</span>
+        <span class="grid__hasta">{{ sequence.maxquantity }}</span>
+        <span class="grid__correlativo">{{ sequence.currentnext }}</span>
+        <span class="grid__buttons">
+          <button (click)="openModalChild(sequence)" class="addbutton">
+            <ion-icon name="add-circle-outline"></ion-icon>
+          </button>
+        </span>
+        <!-- Nueva tabla -->
+        <div class="grid__childs childs" *ngIf="sequence.open">
+          <div class="gridd columns-head-sucursal">
+            <span class="gridd__name head">
+              <ion-label>Nombre</ion-label>
+            </span>
+            <span class="gridd__description head">
+              <ion-label>Descripción</ion-label>
+            </span>
+            <span class="gridd__type head">
+              <ion-label>Tipo de documento</ion-label>
+            </span>
+            <span class="gridd__prefix head">
+              <ion-label>Prefijo</ion-label>
+            </span>
+            <span class="gridd__suffix head">
+              <ion-label>Sufijo</ion-label>
+            </span>
+          </div>
+
+          <span class="gridd" *ngFor="let child of sequence.childs">
+            <span class="gridd__name subitem">{{ child.name }}</span>
+            <span class="gridd__description subitem">{{
+              child.description
+            }}</span>
+            <span class="gridd__type subitem">{{ child.tipo_documento }}</span>
+            <span class="gridd__prefix subitem">{{ child.prefix }}</span>
+            <span class="gridd__suffix subitem">{{ child.suffix }}</span>
+          </span>
+        </div>
+      </span>
+    </div>
+  </section>
+</main>

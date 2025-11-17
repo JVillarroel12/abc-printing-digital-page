@@ -1,0 +1,23 @@
+<main>
+  <section class="search">
+    <div class="card">
+      <label for="">Buscar organización</label>
+      <input placeholder="Buscar " [(ngModel)]="form.name" #prefix>
+    </div>
+  </section>
+  <section class="list" id="containerLines">
+    <div class="grid columns-head">
+      <span class="grid__name">
+        <ion-label>Prefijo</ion-label>
+      </span>
+
+    </div>
+    <span class="grid items lineSelected" 
+      *ngFor="let prefix of filteredPrefix | dynamicFilter: form.name" 
+      [ngClass]="{'prefixSelected': prefix.prefix_id == linePrefixSelected.prefix_id}"
+      (dblclick)="selectedPrefix(prefix)"
+    >
+      <span class="grid__name">{{prefix.name}}</span>
+    </span>
+  </section>
+</main>

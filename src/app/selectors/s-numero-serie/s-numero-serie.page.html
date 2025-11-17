@@ -1,0 +1,22 @@
+<main>
+  <section class="search">
+    <div class="card">
+      <label for="">Buscar número de serie</label>
+      <input placeholder="Buscar " [(ngModel)]="form.numero" #serie />
+    </div>
+  </section>
+  <section class="list" id="containerLines">
+    <div class="grid columns-head">
+      <span class="grid__name">
+        <ion-label>Número</ion-label>
+      </span>
+    </div>
+    <span
+      class="grid items"
+      *ngFor="let serie of filteredNumeroSerie | dynamicFilter: form.numero"
+      (dblclick)="selectedSerie(serie)"
+    >
+      <span class="grid__name"> {{serie}} </span>
+    </span>
+  </section>
+</main>

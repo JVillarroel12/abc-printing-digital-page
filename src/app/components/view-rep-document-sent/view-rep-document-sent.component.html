@@ -1,0 +1,190 @@
+<main>
+  <section class="header">
+    <div class="card">
+      <span>DOCUMENTOS RECIBIDOS</span>
+    </div>
+  </section>
+  <section class="section-filter">
+    <div class="form">
+      <div class="card">
+        <label for="">
+          <ion-icon name="search"></ion-icon>
+          Buscar
+        </label>
+        <input placeholder="Buscar " [(ngModel)]="form.name" #order />
+      </div>
+
+      <div class="card selector">
+        <label>Fecha Desde:</label>
+        <input
+          type="datetime-local"
+          placeholder="Fecha Desde"
+          [(ngModel)]="form.fechaInicio"
+          (change)="onInicioDateChange($event)"
+        />
+      </div>
+
+      <div class="card selector">
+        <label>Fecha Hasta:</label>
+        <input
+          type="datetime-local"
+          placeholder="Fecha gasta"
+          [(ngModel)]="form.fechaFin"
+          (change)="onFinDateChange($event)"
+        />
+      </div>
+    </div>
+    <div class="list" id="containerLines">
+      <div class="grid columns-head">
+        <span class="grid__estado">
+          <ion-label>Procesado</ion-label>
+        </span>
+        <span class="grid__fEmission">
+          <ion-label>Fecha Emision</ion-label>
+        </span>
+        <span class="grid__tipoDocumento">
+          <ion-label>Tipo. Documento</ion-label>
+        </span>
+        <span class="grid__acquirer">
+          <ion-label>Adquiriente</ion-label>
+        </span>
+        <span class="grid__nmrDocument">
+          <ion-label>N. Documento</ion-label>
+        </span>
+        <span class="grid__message">
+          <ion-label>Error</ion-label>
+        </span>
+      </div>
+
+      <span
+        class="grid items"
+        *ngFor="let document of filteredDocuments | dynamicFilter : form.name"
+      >
+        <span class="grid__estado">
+          <div
+            [ngClass]="{
+              anulado: document.procesado == true,
+              noAnulado: document.procesado == false
+            }"
+          >
+            <p *ngIf="document.procesado == true">SI</p>
+            <p *ngIf="document.procesado == false">NO</p>
+          </div>
+        </span>
+        <span class="grid__fEmission">
+          {{
+            document.datos.documento_electronico.encabezado
+              .identificacion_documento.fecha_emision
+          }}
+          {{
+            document.datos.documento_electronico.encabezado
+              .identificacion_documento.hora_emision
+          }}
+        </span>
+        <span class="grid__tipoDocumento">
+          <div>
+            <p
+              *ngIf="
+                document.datos.documento_electronico.encabezado
+                  .identificacion_documento.tipo_documento == '01'
+              "
+              [ngClass]="{
+                factura:
+                  document.datos.documento_electronico.encabezado
+                    .identificacion_documento.tipo_documento == '01'
+              }"
+            >
+              FACTURA
+            </p>
+            <p
+              *ngIf="
+                document.datos.documento_electronico.encabezado
+                  .identificacion_documento.tipo_documento == '02'
+              "
+              [ngClass]="{
+                credito:
+                  document.datos.documento_electronico.encabezado
+                    .identificacion_documento.tipo_documento == '02'
+              }"
+            >
+              NOTA. CRÉDITO
+            </p>
+            <p
+              *ngIf="
+                document.datos.documento_electronico.encabezado
+                  .identificacion_documento.tipo_documento == '03'
+              "
+              [ngClass]="{
+                debito:
+                  document.datos.documento_electronico.encabezado
+                    .identificacion_documento.tipo_documento == '03'
+              }"
+            >
+              NOTA. DÉBITO
+            </p>
+            <p
+              *ngIf="
+                document.datos.documento_electronico.encabezado
+                  .identificacion_documento.tipo_documento == '04' &&
+                document.datos.documento_electronico.guia_despacho
+                  .es_guia_despacho == '1'
+              "
+              [ngClass]="{
+                despacho:
+                  document.datos.documento_electronico.encabezado
+                    .identificacion_documento.tipo_documento == '04' &&
+                  document.datos.documento_electronico.guia_despacho
+                    .es_guia_despacho == '1'
+              }"
+            >
+              GUÍA. DESPACHO
+            </p>
+            <p
+              *ngIf="
+                document.datos.documento_electronico.encabezado
+                  .identificacion_documento.tipo_documento == '04' &&
+                document.datos.documento_electronico.guia_despacho
+                  .es_guia_despacho == '0'
+              "
+              [ngClass]="{
+                entrega:
+                  document.datos.documento_electronico.encabezado
+                    .identificacion_documento.tipo_documento == '04' &&
+                  document.datos.documento_electronico.guia_despacho
+                    .es_guia_despacho == '0'
+              }"
+            >
+              ORDEN. ENTREGA
+            </p>
+            <p
+              *ngIf="
+                document.datos.documento_electronico.encabezado
+                  .identificacion_documento.tipo_documento == '05' ||
+                document.datos.documento_electronico.encabezado
+                  .identificacion_documento.tipo_documento == '06'
+              "
+              [ngClass]="{
+                retencion:
+                  document.datos.documento_electronico.encabezado
+                    .identificacion_documento.tipo_documento == '05' ||
+                  document.datos.documento_electronico.encabezado
+                    .identificacion_documento.tipo_documento == '06'
+              }"
+            >
+              COMP. RETENCIÓN
+            </p>
+          </div>
+        </span>
+        <span class="grid__acquirer">{{
+          document.datos.documento_electronico.encabezado.comprador
+            ?.razon_social
+        }}</span>
+        <span class="grid__nmrDocument">{{
+          document.datos.documento_electronico.encabezado
+            .identificacion_documento.numero_documento
+        }}</span>
+        <span class="grid__message">{{ document.mensaje }}</span>
+      </span>
+    </div>
+  </section>
+</main>

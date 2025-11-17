@@ -1,0 +1,78 @@
+<main>
+  <section class="header">
+    <div class="card" >
+        <span>REPORTE DE INTENTOS FALLIDOS</span>
+    </div>
+  </section>
+  <section class="section-form">
+    <div class="form">
+      <div 
+      class="card groupItems" 
+      >
+        <label>Tipo de documento</label>
+        <select         
+          #typevalue
+          [(ngModel)]="form.document_type"
+        >
+          <option value="Factura" selected>Factura</option>
+          <option value="Nota de crédito">Nota de crédito</option>
+          <option value="Nota de Débito">Nota de Débito</option>
+        </select>    
+      </div>
+
+      <div class="card selector">
+        <label>Fecha Desde:</label>
+        <input 
+        type="datetime-local"
+        placeholder="Fecha Desde" 
+        [(ngModel)]="form.fechaInicio" 
+        (change)="onInicioDateChange($event)"
+        
+        >
+      </div>
+
+      <div class="card normal" >
+        <label>Código de Estatus</label>
+        <input
+          type="text"
+          [(ngModel)]="form.cod_status"
+          #name
+        >
+      </div>
+      <div class="card normal" >
+        <label>RIF</label>
+        <input
+          type="text"
+          [(ngModel)]="form.rif"
+          #name
+        >
+      </div>
+      <div class="card normal" >
+        <label>Serie</label>
+        <input
+          type="text"
+          [(ngModel)]="form.serie"
+          #name
+        >
+      </div>
+      <div class="card normal" >
+        <label>Número de Documento</label>
+        <input
+          type="text"
+          [(ngModel)]="form.doc_number"
+          #name
+        >
+      </div>
+    </div>
+  </section>
+  <section class="section-footer">
+    <button class="view">
+      <ion-icon name="eye"></ion-icon>
+      <span>VISUALIZAR</span>
+    </button>
+    <button class="download">
+      <ion-icon name="arrow-down-circle"></ion-icon>
+      <span>DESCARGAR</span>
+    </button>
+  </section>
+</main>

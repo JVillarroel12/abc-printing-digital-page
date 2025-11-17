@@ -1,0 +1,73 @@
+<main>
+  <section class="header">
+    <div class="card" >
+        <span>Organizaciones</span>
+    </div>
+    <button (click)="openModalOrg()">
+      <ion-icon name="add"></ion-icon>
+      <span>NUEVO REGISTRO</span>
+    </button>
+  </section>
+  <section class="section-filter">
+    <div class="form">
+      <div class="card">
+        <label for="">
+          <ion-icon name="search"></ion-icon>
+          Buscar
+        </label>
+        <input placeholder="Buscar " 
+        [(ngModel)]="form.name" #order
+        >
+      </div>
+
+      <!-- <div class="card selector">
+        <label>Fecha Desde:</label>
+        <input 
+        type="datetime-local"
+        placeholder="Fecha Desde" 
+        [(ngModel)]="form.fechaInicio" 
+        (change)="onInicioDateChange($event)"
+        
+        >
+      </div>
+
+      <div class="card selector">
+        <label>Fecha Hasta:</label>
+        <input type="datetime-local"
+        placeholder="Fecha gasta" 
+        [(ngModel)]="form.fechaFin" 
+        (change)="onFinDateChange($event)"
+        
+        >
+      </div> -->
+    </div>
+    <div class="list" id="containerLines">
+      <div class="grid columns-head" >
+
+        <span class="grid__active">
+          <ion-label></ion-label>
+        </span>
+        <span class="grid__razonSocial">
+          <ion-label>Razon Social</ion-label>
+        </span>
+        <span class="grid__rif">
+          <ion-label>RIF</ion-label>
+        </span>
+
+      </div>
+      <span class="grid items" 
+        *ngFor="let org of filteredOrgs | dynamicFilter: form.name"
+        >
+        <span class="grid__active">
+          <div [ngClass]="{'active': org.isactive == true, 'noActive': org.isactive == false}">
+            <p *ngIf="org.isactive == true">SI</p>
+            <p *ngIf="org.isactive == false">NO</p>
+          </div>
+        </span>
+        <span class="grid__razonSocial">{{org.social_name}}</span>
+        <span class="grid__rif">{{org.tipo_identificacion}}{{org.value}}</span>
+
+      </span>
+    </div>
+  </section>
+</main>

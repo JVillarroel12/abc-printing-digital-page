@@ -1,0 +1,79 @@
+<main>
+  <section class="header">
+    <div class="card" >
+        <span>REPORTE DE VENTAS</span>
+    </div>
+  </section>
+  <section class="section-form">
+    <div class="form">
+      <div 
+      class="card groupItems" 
+      >
+        <label>Tipo</label>
+        <select         
+          #typevalue
+          [(ngModel)]="form.type"
+        >
+          <option value="Todos" selected>Todos</option>
+          <option value="Solo propios">Solo propios</option>
+          <option value="Solo terceros">Solo terceros</option>
+        </select>    
+      </div>
+
+      <div class="card selector">
+        <label>Fecha Desde:</label>
+        <input 
+        type="datetime-local"
+        placeholder="Fecha Desde" 
+        [(ngModel)]="form.fechaInicio" 
+        (change)="onInicioDateChange($event)"
+        
+        >
+      </div>
+
+      <div class="card selector">
+        <label>Fecha Hasta:</label>
+        <input type="datetime-local"
+        placeholder="Fecha gasta" 
+        [(ngModel)]="form.fechaFin" 
+        (change)="onFinDateChange($event)"
+        
+        >
+      </div>
+      <div 
+      class="card groupItems" 
+      >
+        <label>Sucursales</label>
+        <select         
+          #typevalue
+          [(ngModel)]="form.sucursal"
+        >
+          <option value="" selected></option>
+        </select>    
+      </div>
+
+      <div 
+      class="card groupItems" 
+      >
+        <label>Series</label>
+        <select         
+          #typevalue
+          [(ngModel)]="form.serie"
+        >
+          <option value=""></option>
+        </select>    
+      </div>
+
+    </div>
+  </section>
+  <section class="section-footer">
+    <button class="view">
+      <ion-icon name="eye"></ion-icon>
+      <span>VISUALIZAR</span>
+    </button>
+    <button class="download">
+      <ion-icon name="arrow-down-circle"></ion-icon>
+      <span>DESCARGAR</span>
+    </button>
+  </section>
+</main>

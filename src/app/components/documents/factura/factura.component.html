@@ -1,0 +1,444 @@
+<main class="documents">
+  <section class="section-filter">
+    <div class="section-form">
+      <div class="form">
+        <div class="card selector" [ngClass]="{ focused: isFocused }">
+          <label>Fecha Desde:</label>
+          <input
+            type="datetime-local"
+            placeholder="Fecha Desde"
+            [(ngModel)]="form.fechaInicio"
+            (change)="onStartDateChange($event)"
+          />
+        </div>
+        <div class="card selector" [ngClass]="{ focused: isFocused }">
+          <label>Fecha Hasta:</label>
+          <input
+            type="datetime-local"
+            placeholder="Fecha gasta"
+            [(ngModel)]="form.fechaFin"
+            (change)="onEndDateChange($event)"
+          />
+        </div>
+        <div
+          [ngClass]="{ focused: isFocused }"
+          class="card selector"
+          *ngIf="
+            authService.user.user.desc_catalogo == 'SENIAT' &&
+            authService.mode == 'imprenta'
+          "
+        >
+          <label>Contribuyente</label>
+          <input
+            type="text"
+            readonly
+            (keyup.F2)="selectorOrg()"
+            (dblclick)="selectorOrg()"
+            [(ngModel)]="selectors.org.name"
+            #org
+          />
+          <ion-icon name="search-outline"></ion-icon>
+        </div>
+        <div class="card" [ngClass]="{ focused: isFocused }">
+          <label for=""> Num. doc </label>
+          <input
+            placeholder="Buscar "
+            [(ngModel)]="form.documento_num_doc"
+            #order
+          />
+        </div>
+
+        <div class="card groupItems" [ngClass]="{ focused: isFocused }">
+          <label>Tipo de transacción</label>
+          <select
+            (focus)="onFocus()"
+            (blur)="onBlur()"
+            [(ngModel)]="form.documento_tipo_trans"
+          >
+            <option value="01" selected>REGISTRO</option>
+            <option value="02">COMPLEMENTO</option>
+            <option value="03">ANULACIÓN</option>
+            <option value="04">AJUSTE</option>
+          </select>
+        </div>
+
+        <div class="card groupItems" [ngClass]="{ focused: isFocused }">
+          <label>Regimen Esp. Tribut.</label>
+          <select
+            (focus)="onFocus()"
+            (blur)="onBlur()"
+            [(ngModel)]="form.documento_reg_esp_tri"
+          >
+            <option value="01" selected>Zonas Económicas Especiales</option>
+            <option value="02">Zona Franca de Paraguaná</option>
+            <option value="03">Zona Libre de Paraguaná</option>
+            <option value="04">Puerto Libre Santa Elena de Uairen</option>
+            <option value="05">Puerto Libre Merida</option>
+            <option value="06">Puerto Libre Estado Nueva Esparta</option>
+            <option value="07">Dutty Free</option>
+          </select>
+        </div>
+
+        <!-- <div class="card selector">
+          <label>Fecha de emisión digital:</label>
+          <input
+                (focus)="onFocus()"
+      (blur)="onBlur()"
+            type="datetime-local"
+            placeholder="Fecha emision"
+            [(ngModel)]="form.documento_fecha_emi"
+          />
+        </div> -->
+
+        <div class="card check">
+          <label>IGTF</label>
+          <ion-checkbox [(ngModel)]="form.igtf"> </ion-checkbox>
+        </div>
+        <div class="card">
+          <label for=""> Serie </label>
+          <input
+            (focus)="onFocus()"
+            (blur)="onBlur()"
+            placeholder="Buscar "
+            [(ngModel)]="form.documento_serie"
+            #order
+          />
+        </div>
+        <div class="card">
+          <label for=""> Sucursal </label>
+          <input
+            (focus)="onFocus()"
+            (blur)="onBlur()"
+            placeholder="Buscar "
+            [(ngModel)]="form.documento_sucursal"
+            #order
+          />
+        </div>
+        <div class="card">
+          <label for=""> Moneda </label>
+          <input
+            (focus)="onFocus()"
+            (blur)="onBlur()"
+            placeholder="Buscar "
+            [(ngModel)]="form.documento_moneda"
+            #order
+          />
+        </div>
+        <div class="card">
+          <label for=""> Num. control digital </label>
+          <input
+            (focus)="onFocus()"
+            (blur)="onBlur()"
+            placeholder="Buscar "
+            [(ngModel)]="form.documento_num_control_dig"
+            #order
+          />
+        </div>
+        <div class="card">
+          <label for=""> Num. doc. dig. </label>
+          <input
+            (focus)="onFocus()"
+            (blur)="onBlur()"
+            placeholder="Buscar "
+            [(ngModel)]="form.documento_num_doc_dig"
+            #order
+          />
+        </div>
+        <!-- <div class="card selector">
+          <label>Fecha de asignacion digital:</label>
+          <input
+                (focus)="onFocus()"
+      (blur)="onBlur()"
+            type="datetime-local"
+            placeholder="Fecha emision"
+            [(ngModel)]="form.documento_fecha_asig_dig"
+          />
+        </div> -->
+        <div class="card groupItems">
+          <label>Tipo RIF</label>
+          <select
+            (focus)="onFocus()"
+            (blur)="onBlur()"
+            [(ngModel)]="form.comprador_tipo_iden"
+          >
+            <option value="" selected>Todos</option>
+            <option value="V" selected>Persona Natural</option>
+            <option value="J">Persona Jurídica</option>
+            <option value="E">Extranjero</option>
+            <option value="P">Pasaporte</option>
+            <option value="G">Gubernamental</option>
+          </select>
+        </div>
+        <div class="card">
+          <label for=""> RIF Comprador </label>
+          <input
+            (focus)="onFocus()"
+            (blur)="onBlur()"
+            placeholder="Buscar "
+            [(ngModel)]="form.comprador_num_iden"
+            #order
+          />
+        </div>
+        <div class="card">
+          <label for=""> Razon social </label>
+          <input
+            (focus)="onFocus()"
+            (blur)="onBlur()"
+            placeholder="Buscar "
+            [(ngModel)]="form.comprador_razon_social"
+            #order
+          />
+        </div>
+        <div class="card">
+          <label for=""> Dirección </label>
+          <input
+            (focus)="onFocus()"
+            (blur)="onBlur()"
+            placeholder="Buscar "
+            [(ngModel)]="form.comprador_direccion"
+            #order
+          />
+        </div>
+        <div class="card groupItems">
+          <label>Alicuota</label>
+          <select
+            (focus)="onFocus()"
+            (blur)="onBlur()"
+            [(ngModel)]="form.alicuota"
+          >
+            <option value="E" selected>Excento</option>
+            <option value="G">General</option>
+            <option value="A">Ampliado</option>
+            <option value="R">Reducido</option>
+          </select>
+        </div>
+      </div>
+      <div class="search">
+        <button (click)="searchDocuments()" class="search">
+          <ion-icon name="search-outline"></ion-icon>
+        </button>
+      </div>
+    </div>
+    <div class="section-form-mobile">
+      <button>
+        <ion-icon name="funnel-outline"></ion-icon>
+      </button>
+    </div>
+    <div class="section-list">
+      <div class="list" [ngClass]="{ noData: filteredDocuments.length == 0 }">
+        <div *ngIf="filteredDocuments.length == 0">
+          <ion-icon name="eye-off-outline"></ion-icon>
+          <p>No hay datos</p>
+        </div>
+        <div class="grid columns-head" *ngIf="filteredDocuments.length > 0">
+          <span class="grid__arrow"> </span>
+          <span class="grid__estado">
+            <ion-label>Anulado</ion-label>
+          </span>
+          <span class="grid__email">
+            <ion-label>Enviar</ion-label>
+          </span>
+          <span class="grid__print">
+            <ion-label></ion-label>
+          </span>
+          <span class="grid__tipoDocumento">
+            <ion-label>Tipo. Documento</ion-label>
+          </span>
+          <span class="grid__acquirer">
+            <ion-label>Adquiriente</ion-label>
+          </span>
+          <span class="grid__rif">
+            <ion-label>RIF</ion-label>
+          </span>
+          <span class="grid__bpartner">
+            <ion-label>Tercero</ion-label>
+          </span>
+          <span class="grid__serie">
+            <ion-label>Serie</ion-label>
+          </span>
+          <span class="grid__nmrDocument">
+            <ion-label>N. Documento</ion-label>
+          </span>
+          <span class="grid__nmrDocumentDig">
+            <ion-label>N. Documento Digital</ion-label>
+          </span>
+          <span class="grid__nmrControl">
+            <ion-label>N. Control</ion-label>
+          </span>
+          <span class="grid__fEmission">
+            <ion-label>Fecha Emision</ion-label>
+          </span>
+          <span class="grid__fEmissionDig">
+            <ion-label>Fecha Emision Digital</ion-label>
+          </span>
+        </div>
+
+        <span
+          class="grid items"
+          *ngFor="let document of filteredDocuments | dynamicFilter : form.name"
+        >
+          <span class="grid__arrow">
+            <ion-icon
+              name="caret-forward-outline"
+              *ngIf="document.open == false"
+              (click)="openDocument(document)"
+            ></ion-icon>
+            <ion-icon
+              name="caret-down-outline"
+              *ngIf="document.open == true"
+              (click)="openDocument(document)"
+            ></ion-icon>
+          </span>
+          <span class="grid__estado">
+            <div
+              [ngClass]="{
+                anulado: document.anulado == true,
+                noAnulado: document.anulado == false
+              }"
+            >
+              <p *ngIf="document.anulado == true">SI</p>
+              <p *ngIf="document.anulado == false">NO</p>
+            </div>
+          </span>
+          <span class="grid__email">
+            <button
+              class="email"
+              (click)="modalSendEmail(document)"
+              title="Enviar al correo"
+            >
+              <ion-icon name="mail-outline"></ion-icon>
+            </button>
+          </span>
+          <span class="grid__print">
+            <button
+              class="print"
+              (click)="viewDocument(document)"
+              title="Ver documento"
+            >
+              <ion-icon name="print-outline"></ion-icon>
+            </button>
+          </span>
+          <span class="grid__tipoDocumento">
+            <div>
+              <p
+                *ngIf="document.tipo_documento == '01'"
+                [ngClass]="{ factura: document.tipo_documento == '01' }"
+              >
+                FACTURA
+              </p>
+            </div>
+          </span>
+          <span class="grid__acquirer">{{
+            document.comprador?.razon_social
+          }}</span>
+          <span class="grid__rif">
+            {{ document.comprador?.tipo_identificacion }}-{{
+              document.comprador?.numero_identificacion
+            }}
+          </span>
+          <span class="grid__bpartner">{{
+            document.tercero?.razon_social
+          }}</span>
+          <span class="grid__serie">{{ document.serie }}</span>
+          <span class="grid__nmrDocument">{{ document.numero_documento }}</span>
+          <span class="grid__nmrDocumentDig">{{
+            document.numero_documento_dig
+          }}</span>
+          <span class="grid__nmrControl">{{
+            document.numero_control_dig
+          }}</span>
+          <span class="grid__fEmission">{{ document.fecha_emision }}</span>
+          <span class="grid__fEmissionDig">{{
+            document.fecha_asignacion_digital
+          }}</span>
+
+          <!-- LINES -->
+          <div
+            class="grid__childs childs"
+            *ngIf="
+              (document.open && document.tipo_documento != '05') ||
+              (document.open && document.tipo_documento != '06')
+            "
+          >
+            <div class="gridd columns-head-sucursal">
+              <span class="gridd__name head">
+                <ion-label>Nombre</ion-label>
+              </span>
+              <span class="gridd__cant head">
+                <ion-label>Cant</ion-label>
+              </span>
+              <span class="gridd__price head">
+                <ion-label>Precio Uni. (Bs)</ion-label>
+              </span>
+              <span class="gridd__porcentIva head">
+                <ion-label>(%) IVA</ion-label>
+              </span>
+              <span class="gridd__iva head">
+                <ion-label>Precio IVA</ion-label>
+              </span>
+              <span class="gridd__total head">
+                <ion-label>Precio Total (Bs)</ion-label>
+              </span>
+            </div>
+
+            <span class="gridd" *ngFor="let line of document.lines">
+              <span class="gridd__name subitem">{{ line.descripcion }}</span>
+              <span class="gridd__cant subitem">{{ line.cantidad }}</span>
+              <span class="gridd__price subitem">{{
+                line.precio_unitario
+              }}</span>
+              <span class="gridd__porcentIva subitem">{{ line.tasa_iva }}</span>
+              <span class="gridd__iva subitem">{{ line.valor_iva }}</span>
+              <span class="gridd__total subitem">{{
+                line.valor_total_item
+              }}</span>
+            </span>
+          </div>
+          <!-- LINES RETENCION-->
+          <div
+            class="grid__childs childs"
+            *ngIf="
+              document.open &&
+              (document.tipo_documento == '05' ||
+                document.tipo_documento == '06')
+            "
+          >
+            <div class="gridd columns-head-sucursal">
+              <span class="gridd__name head">
+                <ion-label>Nº. Factura Afectada</ion-label>
+              </span>
+              <span class="gridd__cant head">
+                <ion-label>Base Imponible</ion-label>
+              </span>
+              <span class="gridd__price head">
+                <ion-label>(%) IVA</ion-label>
+              </span>
+              <span class="gridd__porcentIva head">
+                <ion-label>Monto IVA</ion-label>
+              </span>
+              <span class="gridd__iva head">
+                <ion-label>Monto Total</ion-label>
+              </span>
+              <span class="gridd__total head">
+                <ion-label>Monto Retenido</ion-label>
+              </span>
+            </div>
+
+            <span class="gridd" *ngFor="let line of document.lines">
+              <span class="gridd__name subitem"></span>
+              <span class="gridd__cant subitem">{{ line.base_imponible }}</span>
+              <span class="gridd__price subitem">{{
+                line.porcentaje_iva
+              }}</span>
+              <span class="gridd__porcentIva subitem">{{
+                line.monto_iva
+              }}</span>
+              <span class="gridd__iva subitem">{{ line.monto_total }}</span>
+              <span class="gridd__total subitem">{{ line.retenido_iva }}</span>
+            </span>
+          </div>
+        </span>
+      </div>
+    </div>
+  </section>
+</main>

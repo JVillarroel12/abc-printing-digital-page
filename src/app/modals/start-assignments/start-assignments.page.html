@@ -1,0 +1,105 @@
+<ion-header class="headerModal">
+  <ion-toolbar>
+    <ion-title slot="start">Iniciar secuencia</ion-title>
+    <ion-icon name="close-outline" slot="end" (click)="closeModal()"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <main class="modal-add">
+    <section>
+      <div class="card selector" [class.invalid]="!valid.isOrgValid">
+        <label>Organización</label>
+        <input
+          type="text"
+          readonly
+          (keyup.F2)="selectorOrg()"
+          (dblclick)="selectorOrg()"
+          [(ngModel)]="selectors.org.name"
+          (focusout)="validateField('org_id')"
+          #org
+        />
+        <ion-icon name="search-outline"></ion-icon>
+      </div>
+
+      <div class="card selector" [class.invalid]="!valid.isNumeroValid">
+        <label>Número de serie</label>
+        <input
+          type="text"
+          readonly
+          (keyup.F2)="selectorNumeroSerie()"
+          (dblclick)="selectorNumeroSerie()"
+          [(ngModel)]="selectors.numeroSerie.name"
+          (focusout)="validateField('numero')"
+          #org
+        />
+        <ion-icon name="search-outline"></ion-icon>
+      </div>
+      <div class="card normal" [class.invalid]="!valid.isStartnoValid">
+        <label>Numero de inicio</label>
+        <input
+          type="number"
+          [(ngModel)]="form.startno"
+          (focusout)="validateField('startno')"
+        />
+      </div>
+      <div class="card normal" [class.invalid]="!valid.isEndnoValid">
+        <label>Numero de fin</label>
+        <input
+          type="number"
+          [(ngModel)]="form.endno"
+          (focusout)="validateField('endno')"
+        />
+      </div>
+      <div class="card normal" [class.invalid]="!valid.isQuantityValid">
+        <label>Cantidad de documentos</label>
+        <input
+          type="number"
+          [(ngModel)]="form.quantity"
+          (focusout)="validateField('quantity')"
+        />
+      </div>
+      <div
+        class="card normal columns2"
+        [class.invalid]="!valid.isDescriptionValid"
+      >
+        <label>Descripcion</label>
+        <input
+          type="text"
+          [(ngModel)]="form.description"
+          (focusout)="validateField('description')"
+        />
+      </div>
+    </section>
+    <section>
+      <div class="card selector">
+        <label>Fecha Factura:</label>
+        <input
+          type="datetime-local"
+          placeholder="Fecha factura"
+          [(ngModel)]="form.fecha_factura"
+          (change)="onFacturaDateChange($event)"
+        />
+      </div>
+      <div class="card normal">
+        <label>Nro. Control</label>
+        <input type="text" [(ngModel)]="form.nro_control" />
+      </div>
+      <div class="card normal">
+        <label>Nro. Documento</label>
+        <input type="text" [(ngModel)]="form.nro_documento" />
+      </div>
+      <div class="card normal">
+        <label>Monto</label>
+        <input type="number" [(ngModel)]="form.monto" />
+      </div>
+      <div class="card normal">
+        <label>Referencia</label>
+        <input type="text" [(ngModel)]="form.referencia" />
+      </div>
+    </section>
+  </main>
+
+  <section class="bottomModal" (click)="setDataSequence()">
+    <button>Guardar</button>
+  </section>
+</ion-content>

@@ -1,12 +1,584 @@
-.app-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+/* Estructura Principal */
+.layout {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    "top-menu top-menu"
+    "sidebar main-content";
+  height: 100vh;
+  background-color: var(--main-light-4);
+  .menu-toggle {
+    display: none;
+  }
+  .top-menu {
+    grid-area: top-menu;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--main-white);
+    color: white;
+    padding: 5px 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12), 0 6px 6px rgba(0, 0, 0, 0.12);
+    margin: 10px 10px 0px 10px;
+    border-radius: 5px;
+    position: relative;
+    z-index: 100;
+    border-bottom: 1px solid rgb(202, 202, 202);
+    div {
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+    img {
+      margin: 0px 0px;
+      width: 80px;
+      height: 40px;
+      margin-top: -4px;
+    }
+    .title {
+      h1 {
+        margin-left: 10px;
+      }
+      .call {
+        margin-left: 10px;
+        padding: 10px;
+        background-color: var(--main-blue);
+        border-radius: 50%;
+        ion-icon {
+          color: white;
+          font-size: 20px;
+        }
+      }
+    }
+    .user {
+      justify-content: flex-end;
+      button {
+        padding: 8px;
+        background-color: var(--main-blue);
+        border-radius: 50%;
+        margin-right: 7px;
+        ion-icon {
+          color: white;
+          font-size: 20px;
+        }
+      }
+      div {
+        width: auto;
+        display: flex;
+        height: 40px;
+        padding: 8px;
+        background-color: var(--main-blue);
+        border-radius: 20px;
+        cursor: pointer;
+
+        ion-icon {
+          color: white;
+          font-size: 20px;
+          margin-right: 3px;
+        }
+        p {
+          color: white;
+        }
+      }
+    }
+    .menu-toggle {
+      width: 40px;
+      height: 35px;
+      background-color: var(--main-blue);
+      color: white;
+      cursor: pointer;
+      font-size: 25px;
+      padding: 5px;
+      display: flex;
+      border-radius: 5px;
+      justify-content: center;
+      align-items: center;
+      display: none;
+    }
+    .app-title {
+      margin: 0;
+      font-size: 16px;
+    }
+  }
+  /* Sidebar */
+  .sidebar {
+    grid-area: sidebar;
+    width: 220px;
+    background-color: var(--main-light-4);
+    color: white;
+    transition: width 0.3s;
+    display: flex;
+    flex-direction: column;
+
+    padding: 10px 0px 10px 10px;
+    .menu-labels {
+      width: 100%;
+      height: calc(100vh - 80px);
+      box-sizing: border-box;
+      //display: flex;
+      flex-direction: column;
+      background-color: var(--main-white);
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1),
+        0 8px 16px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      //position: relative;
+      padding-bottom: 10px !important;
+      overflow-y: scroll;
+    }
+
+    .menu-item {
+      width: 100%;
+      cursor: pointer;
+      flex-direction: column;
+      background-color: var(--main-white);
+      transition: all 0.3s ease;
+      overflow: hidden;
+
+      // Cuando el submenú está abierto
+      // &.has-submenu-open {
+      //   background-color: rgba(var(--main-light-3-rgb), 0.1);
+      // }
+
+      > div:first-child {
+        // Selecciona solo el div principal (no el submenu)
+        width: 100%;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 2.5px 0px;
+
+        .title {
+          display: flex;
+          align-items: center;
+          height: 100%;
+          padding: 5px;
+          font-size: 13px;
+          color: var(--main-blue);
+
+          ion-icon {
+            color: var(--main-white);
+            margin-right: 5px;
+            padding: 5px;
+            background-color: var(--marine-water);
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+          }
+        }
+
+        ion-icon {
+          font-size: 18px;
+          transition: transform 0.3s ease;
+        }
+      }
+
+      .toggle-icon {
+        margin-right: 10px;
+        color: var(--main-blue);
+        transition: transform 0.3s ease;
+
+        // Rotación cuando el submenú está abierto
+        .menu-item.has-submenu-open & {
+          transform: rotate(90deg);
+        }
+      }
+
+      &.selected {
+        background-color: var(--main-light-3);
+        color: white;
+      }
+
+      &:hover {
+        transition: background-color 0.2s ease;
+      }
+      background-color: rgba(var(--main-blue-rgb), 0.1);
+
+      &:last-child {
+        width: 90%;
+        border-radius: 10px;
+        background-color: var(--danger);
+        margin-left: 12px;
+        transition: transform 0.3s ease, box-shadow 0.4s ease;
+
+        ion-icon {
+          background: var(--main-white);
+          color: var(--main-blue);
+        }
+        &:hover {
+          transform: scale(1.05);
+          box-shadow: 0 8px 25px rgba(19, 43, 57, 0.2);
+        }
+      }
+    }
+
+    // Contenedor del submenú con transición
+    .submenu-container {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+      &.level-3 {
+        display: flex;
+        width: 100%;
+        padding: 0px; // Indentación visual para el Nivel 3
+        justify-content: flex-start;
+        &.open {
+          // Ajusta la altura si es necesario
+          max-height: 700px;
+        }
+      }
+      &.open {
+        max-height: 700px; // Valor suficientemente alto para contener todos los subitems
+      }
+    }
+
+    .submenu {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+
+      .submenu-item {
+        width: 95%;
+        min-height: 50px !important;
+        height: auto !important;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: column;
+        margin-left: 10px;
+        padding: 0 5px;
+        font-size: 12px;
+        color: var(--main-blue);
+        transition: all 0.3s ease;
+
+        // Animación de entrada para cada subitem
+        .submenu-container.open & {
+          animation: fadeInUp 0.3s ease forwards;
+        }
+
+        // Retraso escalonado para cada subitem
+        @for $i from 1 through 10 {
+          &:nth-child(#{$i}) {
+            animation-delay: #{$i * 0.05}s;
+          }
+        }
+
+        ion-icon {
+          margin-right: 5px;
+          font-size: 16px;
+          padding: 5px;
+          background-color: var(--main-blue);
+          border-radius: 5px;
+          color: var(--main-white);
+        }
+        .toggle-icon {
+          background-color: white !important;
+          padding: 0px;
+          margin-right: 0px;
+          margin-left: 10px;
+          color: black;
+        }
+        &.selected {
+          background-color: var(--main-light-3);
+          color: white;
+          border-radius: 5px;
+          border: 2px solid var(--main-blue);
+          transform: translateX(5px);
+        }
+        .level-2-content {
+          width: 100%;
+          min-height: 30px !important; // 50px de altura
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          cursor: pointer;
+          // Estilos para los íconos del Nivel 2
+          ion-icon:not(.toggle-icon) {
+            margin-right: 3px;
+            font-size: 16px;
+            // padding: 5px;
+            // background-color: var(--main-blue);
+            border-radius: 5px;
+            color: var(--main-white);
+          }
+        }
+
+        // ESTILOS NUEVOS PARA EL NIVEL 3
+        &.level-3 {
+          // Reducimos el margen y el tamaño para indentación visual
+          // Esto asume que estás en el tercer *ngFor del HTML
+          width: 90%;
+          margin-left: 5px; // Indentación adicional
+          display: flex;
+          justify-content: flex-start;
+          .level-2-content {
+            height: 30px !important; // Altura un poco menor
+            font-size: 12px; // Letra un poco más pequeña
+          }
+
+          // Si el ítem de Nivel 3 está seleccionado
+          &.selected {
+            // Puedes cambiar el color o el estilo del borde para diferenciar
+            background-color: var(--main-light-4);
+            border: 1px solid var(--marine-water);
+          }
+        }
+      }
+      .submenu-item.level-3 {
+        width: 100%;
+        // Estilo específico si lo deseas
+        display: flex;
+        text-align: right;
+        justify-content: flex-start;
+        height: 30px !important;
+        margin: 0; // Separación entre ítems
+        // El contenido del Nivel 3 es el que está directamente en el div
+        // (No tiene la clase .level-2-content, es el estilo original de .submenu-item)
+
+        // Asegurar la correcta indentación y que no choque con el borde del Nivel 2
+
+        margin-left: 0; // Quita el margin-left: 10px que se aplica al Nivel 2
+      }
+    }
+  }
+
+  /* Contenido Principal */
+  .main-content {
+    height: 100%;
+    grid-area: main-content;
+    padding: 10px;
+    background-color: var(--main-light-4);
+    overflow-y: auto;
+  }
+}
+// Animación para el icono de toggle
+@keyframes rotateIcon {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(90deg);
+  }
 }
 
-.main-content {
-  flex: 1;
-  padding: 2rem;
-  margin: 0 auto;
-  width: 100%;
+// Efecto de escalado suave
+.scale-in {
+  animation: scaleIn 0.3s ease forwards;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+// Estilos para Tablet/Móvil (menos de 769px)
+@media (max-width: 768px) {
+  .layout {
+    grid-template-areas:
+      "top-menu"
+      "main-content";
+    grid-template-columns: 1fr;
+
+    .desktop-menu {
+      display: none;
+    }
+
+    .top-menu {
+      border-radius: 0;
+      margin: 0;
+      .menu-toggle {
+        display: block;
+      }
+    }
+    .logo {
+      width: 100%;
+      height: 100px;
+      background-color: white;
+      border-bottom: 1px solid gray;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        width: 70px;
+        height: 70px;
+      }
+    }
+    .menu-labels {
+      width: 100%;
+      height: calc(100vh - 50px);
+      box-sizing: border-box;
+      //display: flex;
+      flex-direction: column;
+      background-color: var(--main-white);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1),
+        0 8px 16px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      //position: relative;
+      padding-bottom: 10px !important;
+      overflow-y: scroll;
+      .menu-item {
+        width: 100%;
+        cursor: pointer;
+        flex-direction: column;
+        background-color: var(--main-white);
+        transition: all 0.3s ease;
+        overflow: hidden;
+
+        // Cuando el submenú está abierto
+        // &.has-submenu-open {
+        //   background-color: rgba(var(--main-light-3-rgb), 0.1);
+        // }
+
+        > div:first-child {
+          // Selecciona solo el div principal (no el submenu)
+          width: 100%;
+          height: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin: 2.5px 0px;
+
+          .title {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            padding: 5px;
+            font-size: 13px;
+            color: var(--main-blue);
+
+            ion-icon {
+              color: var(--main-white);
+              margin-right: 5px;
+              padding: 5px;
+              background-color: var(--marine-water);
+              border-radius: 5px;
+              transition: transform 0.3s ease;
+            }
+          }
+
+          ion-icon {
+            font-size: 18px;
+            transition: transform 0.3s ease;
+          }
+        }
+
+        .toggle-icon {
+          margin-right: 10px;
+          color: var(--main-blue);
+          transition: transform 0.3s ease;
+
+          // Rotación cuando el submenú está abierto
+          .menu-item.has-submenu-open & {
+            transform: rotate(90deg);
+          }
+        }
+
+        &.selected {
+          background-color: var(--main-light-3);
+          color: white;
+        }
+
+        &:hover {
+          transition: background-color 0.2s ease;
+        }
+        background-color: rgba(var(--main-blue-rgb), 0.1);
+
+        &:last-child {
+          display: none;
+        }
+      }
+
+      // Contenedor del submenú con transición
+      .submenu-container {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+        &.open {
+          max-height: 500px; // Valor suficientemente alto para contener todos los subitems
+        }
+      }
+
+      .submenu {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        .submenu-item {
+          width: 90%;
+          height: 50px !important;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          margin-left: 10px;
+          padding: 0 5px;
+          font-size: 13px;
+          color: var(--main-blue);
+          transition: all 0.3s ease;
+
+          // Animación de entrada para cada subitem
+          .submenu-container.open & {
+            animation: fadeInUp 0.3s ease forwards;
+          }
+
+          // Retraso escalonado para cada subitem
+          @for $i from 1 through 10 {
+            &:nth-child(#{$i}) {
+              animation-delay: #{$i * 0.05}s;
+            }
+          }
+
+          ion-icon {
+            margin-right: 5px;
+            font-size: 18px;
+            padding: 5px;
+            background-color: var(--main-blue);
+            border-radius: 5px;
+            color: var(--main-white);
+          }
+
+          &.selected {
+            background-color: var(--main-light-3);
+            color: white;
+            border-radius: 5px;
+            border: 2px solid var(--main-blue);
+            transform: translateX(5px);
+          }
+        }
+      }
+    }
+    .close-sesion {
+      width: 100%;
+      height: 50px;
+      background-color: white;
+      border-top: 1px solid gray;
+      display: flex;
+      justify-content: left;
+      align-items: center;
+      padding: 0px 10px;
+      ion-icon {
+        font-size: 25px;
+        margin-right: 3px;
+        color: black;
+      }
+      p {
+        color: black;
+      }
+    }
+  }
+
+  ion-menu {
+    @media (min-width: 769px) {
+      display: none;
+    }
+  }
 }

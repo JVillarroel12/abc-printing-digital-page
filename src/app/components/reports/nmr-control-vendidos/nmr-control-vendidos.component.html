@@ -1,0 +1,40 @@
+<main>
+  <section class="header">
+    <div class="card-header">
+      <span>NÚMEROS DE CONTROL VENDIDOS</span>
+    </div>
+  </section>
+  <section class="section-form">
+    <div class="type">
+      <div class="card selector">
+        <label>Fecha Desde:</label>
+        <input
+          type="datetime-local"
+          placeholder="Fecha Desde"
+          [(ngModel)]="form.fechaInicio"
+          (change)="onStartDateChange($event)"
+        />
+      </div>
+
+      <div class="card selector">
+        <label>Fecha Hasta:</label>
+        <input
+          type="datetime-local"
+          placeholder="Fecha gasta"
+          [(ngModel)]="form.fechaFin"
+          (change)="onEndDateChange($event)"
+        />
+      </div>
+    </div>
+  </section>
+  <section class="section-footer">
+    <button class="view" (click)="getAllDocument('pdf')">
+      <ion-icon name="eye"></ion-icon>
+      <span>PDF</span>
+    </button>
+    <button class="download" (click)="getAllDocument('excel')">
+      <ion-icon name="arrow-down-circle"></ion-icon>
+      <span>Excel</span>
+    </button>
+  </section>
+</main>

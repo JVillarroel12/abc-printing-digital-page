@@ -1,0 +1,19 @@
+<ion-header [translucent]="true">
+  <ion-toolbar [ngClass]="{'success':mode == 'success', 'error':mode == 'error', 'warning':mode == 'warning',}">
+    <ion-icon name="checkmark-circle-outline" *ngIf="mode == 'success'"></ion-icon>
+    <ion-icon name="close-circle-outline" *ngIf="mode == 'error'"></ion-icon>
+    <ion-icon name="warning" *ngIf="mode == 'warning'"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <main>
+    <h4 >{{header}}</h4>
+    <ion-label>{{content}}</ion-label>
+    <button [ngClass]="{'success':mode == 'success', 'error':mode == 'error', 'warning':mode == 'warning',}" (click)="closeModal()" #btnCloseModal>
+      <span *ngIf="confirm == 'Y'">Guardar</span>
+      <span *ngIf="confirm == 'N'">Cerrar</span> 
+    </button>
+  </main>
+
+</ion-content>a

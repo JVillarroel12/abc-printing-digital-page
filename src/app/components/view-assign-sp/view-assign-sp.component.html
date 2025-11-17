@@ -1,0 +1,109 @@
+<main>
+  <section class="header">
+    <div class="card">
+      <span>Asignaciones sin Procesar</span>
+    </div>
+    <button>
+      <ion-icon name="add"></ion-icon>
+      <span>NUEVO REGISTRO</span>
+    </button>
+  </section>
+  <section class="section-filter">
+    <div class="form">
+      <div class="card">
+        <label for="">
+          <ion-icon name="search"></ion-icon>
+          Buscar
+        </label>
+        <input placeholder="Buscar " [(ngModel)]="form.name" #order />
+      </div>
+
+      <!-- <div class="card selector">
+        <label>Fecha Desde:</label>
+        <input 
+        type="datetime-local"
+        placeholder="Fecha Desde" 
+        [(ngModel)]="form.fechaInicio" 
+        (change)="onInicioDateChange($event)"
+        
+        >
+      </div>
+
+      <div class="card selector">
+        <label>Fecha Hasta:</label>
+        <input type="datetime-local"
+        placeholder="Fecha gasta" 
+        [(ngModel)]="form.fechaFin" 
+        (change)="onFinDateChange($event)"
+        
+        >
+      </div> -->
+    </div>
+    <div class="list" id="containerLines">
+      <div class="grid columns-head">
+        <span class="grid__status">
+          <ion-label></ion-label>
+        </span>
+        <span class="grid__block">
+          <ion-label></ion-label>
+        </span>
+        <span class="grid__portal">
+          <ion-label>Portal</ion-label>
+        </span>
+        <span class="grid__user">
+          <ion-label>Usuario</ion-label>
+        </span>
+        <span class="grid__email">
+          <ion-label>Email</ion-label>
+        </span>
+        <span class="grid__tipo">
+          <ion-label>Tipo</ion-label>
+        </span>
+        <span class="grid__buttons">
+          <ion-label></ion-label>
+        </span>
+      </div>
+      <span
+        class="grid items"
+        *ngFor="let user of filteredUsers | dynamicFilter : form.name"
+      >
+        <span class="grid__status">
+          <div
+            [ngClass]="{
+              active: user.isactive == true,
+              noActive: user.isactive == false
+            }"
+          >
+            <p *ngIf="user.isactive == true">SI</p>
+            <p *ngIf="user.isactive == false">NO</p>
+          </div>
+        </span>
+        <span class="grid__portal">
+          <div
+            [ngClass]="{
+              active: user.isportal == true,
+              noActive: user.isportal == false
+            }"
+          >
+            <p *ngIf="user.isportal == true">SI</p>
+            <p *ngIf="user.isportal == false">NO</p>
+          </div>
+        </span>
+        <span class="grid__block">
+          <ion-icon name="key-outline"></ion-icon>
+        </span>
+        <span class="grid__user">{{ user.usuario }}</span>
+        <span class="grid__email">{{ user.email }}</span>
+        <span class="grid__tipo">{{ user.desc_catalogo }}</span>
+        <span class="grid__buttons">
+          <button
+            class="editbutton"
+            *ngIf="authService.user.user.desc_catalogo == 'SUPER'"
+          >
+            <ion-icon name="create-outline"></ion-icon>
+          </button>
+        </span>
+      </span>
+    </div>
+  </section>
+</main>

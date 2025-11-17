@@ -1,0 +1,65 @@
+<ion-header class="headerModal">
+  <ion-toolbar>
+    <ion-title slot="start">Registrar secuencia Hija</ion-title>
+    <ion-icon name="close-outline" slot="end" (click)="closeModal()"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <main class="modal-add">
+  
+    <section>
+      <div class="card selector" [class.invalid]="!valid.isOrgValid" >
+        <label>Organización</label>
+        <input
+          type="text"
+          readonly
+          [(ngModel)]="selectors.org.name"
+          (focusout)="validateField('org_id')"
+          #org
+        >
+        <ion-icon name="search-outline"></ion-icon>
+      </div> 
+      <div class="card normal" 
+      >
+        <label>Cantidad utilizada</label>
+        <input
+        readonly
+          type="text"
+          [(ngModel)]="selectors.sequence.currentnextsys"
+          (focusout)="validateField('serie_id')"
+        >
+      </div>
+      <div class="card normal" 
+      >
+        <label>Cantidad maxima</label>
+        <input
+        readonly
+          type="text"
+          [(ngModel)]="selectors.sequence.maxquantity"
+          (focusout)="validateField('serie_id')"
+        >
+      </div>         
+      <div class="card selector" [class.invalid]="!valid.isOrgValid" >
+        <label>Serie</label>
+        <input
+          type="text"
+          readonly
+          (keyup.F2)="selectorSerie()"
+          (dblclick)="selectorSerie()"
+          [(ngModel)]="selectors.serie.numero"
+          (focusout)="validateField('serie_id')"
+          #org
+        >
+        <ion-icon name="search-outline"></ion-icon>
+      </div> 
+    </section>
+
+
+  </main>
+
+  <section class="bottomModal" (click)="setDataSerie()">
+      <button >
+        Guardar
+      </button>
+  </section>
+</ion-content>

@@ -1,0 +1,99 @@
+<ion-header class="headerModal">
+  <ion-toolbar>
+    <ion-title slot="start">Registrar Organizacion</ion-title>
+    <ion-icon name="close-outline" slot="end" (click)="closeModal()"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <main class="modal-add">
+    <section>
+      <div class="card normal" [class.invalid]="!valid.isNameValid">
+        <label>Nombre</label>
+        <input
+          type="text"
+          [(ngModel)]="form.name"
+          (focusout)="validateField('name')"
+          #name
+        />
+      </div>
+      <div
+        class="card normal columns2"
+        [class.invalid]="!valid.isSocialNameValid"
+      >
+        <label>Razón social</label>
+        <input
+          type="text"
+          [(ngModel)]="form.social_name"
+          (focusout)="validateField('socual_name')"
+          #name
+        />
+      </div>
+      <div class="card groupItems" [class.invalid]="!valid.isValueValid">
+        <label>Identificador</label>
+        <select #typevalue [(ngModel)]="form.typevalue">
+          <option
+            *ngFor="let document of allDocumentType"
+            [value]="document.valor"
+          >
+            {{document.valor}}
+          </option>
+        </select>
+        <input
+          type="text"
+          [(ngModel)]="form.value"
+          (focusout)="validateField('value')"
+          #value
+        />
+      </div>
+      <div class="card normal columns2" [class.invalid]="!valid.isEmailValid">
+        <label>Email</label>
+        <input
+          type="text"
+          [(ngModel)]="form.email"
+          (focusout)="validateField('email')"
+          #name2
+        />
+      </div>
+      <div class="card normal columns2">
+        <label>Email 2</label>
+        <input type="text" [(ngModel)]="form.email2" #name2 />
+      </div>
+      <div class="card normal" [class.invalid]="!valid.isPhoneValid">
+        <label>Telefono</label>
+        <input
+          type="text"
+          [(ngModel)]="form.phone"
+          (focusout)="validateField('phone')"
+          #name2
+        />
+      </div>
+      <div class="card normal">
+        <label>Telefono 2</label>
+        <input type="text" [(ngModel)]="form.phone2" #name2 />
+      </div>
+      <div class="card normal columns2">
+        <label>Descripcion</label>
+        <input type="text" [(ngModel)]="form.description" #name2 />
+      </div>
+      <div class="card check">
+        <p>Contribuyente especial</p>
+        <ion-checkbox [(ngModel)]="form.contribuyente_especial" color="success">
+        </ion-checkbox>
+      </div>
+      <div class="card check">
+        <p>Organización superior</p>
+        <ion-checkbox [(ngModel)]="form.issummary" color="success">
+        </ion-checkbox>
+      </div>
+      <div class="card check">
+        <p>Numeración automática</p>
+        <ion-checkbox [(ngModel)]="form.numeracion_automatica" color="success">
+        </ion-checkbox>
+      </div>
+    </section>
+  </main>
+
+  <section class="bottomModal" (click)="setDataOrg()">
+    <button>Guardar</button>
+  </section>
+</ion-content>
